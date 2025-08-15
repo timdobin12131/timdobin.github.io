@@ -5,66 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timothy Dobin - Portfolio</title>
     <style>
+        :root {
+            --primary: #1e1e2f;
+            --secondary: #2e2e40;
+            --accent: #4cc9f0;
+            --text-light: #f4f4f4;
+            --text-dark: #333;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-light);
+            line-height: 1.6;
         }
+
         header {
-            background-color: #222;
-            color: white;
-            padding: 20px;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
             text-align: center;
+            padding: 60px 20px;
         }
+
         header h1 {
+            font-size: 2.8rem;
             margin: 0;
         }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
         nav {
-            background-color: #444;
+            background-color: var(--secondary);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             padding: 10px;
-            text-align: center;
         }
+
         nav a {
-            color: white;
-            margin: 0 15px;
+            color: var(--text-light);
             text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 12px;
+            transition: background 0.3s, color 0.3s;
+            border-radius: 5px;
         }
+
         nav a:hover {
-            text-decoration: underline;
+            background-color: var(--accent);
+            color: var(--primary);
         }
+
         section {
             max-width: 900px;
-            margin: auto;
-            padding: 20px;
+            margin: 40px auto;
+            background-color: var(--secondary);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
         }
+
         h2 {
-            color: #444;
-            border-bottom: 2px solid #ddd;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
             padding-bottom: 5px;
+            margin-bottom: 20px;
         }
+
         ul {
-            list-style: none;
-            padding: 0;
+            padding-left: 20px;
         }
-        ul li {
-            margin-bottom: 10px;
-        }
+
         footer {
-            background-color: #222;
-            color: white;
             text-align: center;
             padding: 15px;
-            margin-top: 20px;
+            background-color: var(--secondary);
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            nav {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
+
     <header>
         <h1>Timothy Dobin</h1>
-        <p>Aspiring Engineer and Engineering Manager</p>
-        <p><a href="mailto:timdobin12131@gmail.com" style="color: lightblue;">timdobin12131@gmail.com</a></p>
+        <p>Aspiring Engineer & Engineering Manager</p>
+        <p><a href="mailto:timdobin12131@gmail.com" style="color: var(--accent);">timdobin12131@gmail.com</a></p>
     </header>
 
     <nav>
@@ -79,20 +126,20 @@
         <h2>Education</h2>
         <p><strong>Vernon Hills High School - Vernon Hills, IL</strong> (Expected Graduation: 2026)</p>
         <ul>
-            <li>Recipient of the Sugarman Award for Excellence in Spanish I, II, and III</li>
+            <li>Sugarman Award for Excellence in Spanish I, II, and III</li>
             <li>Cumulative GPA: 4.42</li>
-            <li>Member of VHHS Jazz Band for three years (Drummer)</li>
-            <li>Active member of the Computer Science Club</li>
-            <li>AP Scholar with Distinction Award</li>
+            <li>VHHS Jazz Band (Drummer, 3 years)</li>
+            <li>Computer Science Club member</li>
+            <li>AP Scholar with Distinction</li>
         </ul>
     </section>
 
     <section id="experience">
         <h2>Experience</h2>
-        <p><strong>Crew Member - AMC</strong> (Vernon Hills, IL, Oct 2024 - Present)</p>
+        <p><strong>Crew Member - AMC</strong> (Oct 2024 - Present)</p>
         <ul>
-            <li>Volunteered for shifts during busy days, increasing efficiency</li>
-            <li>Ranked highest seller in Chicago Market during U.S. Snack Pack competition (50+ sold, $2000+ profit)</li>
+            <li>Volunteered for extra shifts during peak times, improving efficiency</li>
+            <li>Top seller in Chicago Market for U.S. Snack Pack competition (50+ packs, $2000+ profit)</li>
         </ul>
     </section>
 
@@ -100,18 +147,18 @@
         <h2>Activities</h2>
         <p><strong>Jazz Group</strong></p>
         <ul>
-            <li>Played drums alongside professional jazz musicians</li>
-            <li>Improved teamwork skills and musical ability</li>
+            <li>Performed with professional jazz musicians</li>
+            <li>Enhanced collaboration and musical skills</li>
         </ul>
     </section>
 
     <section id="skills">
-        <h2>Additional Information</h2>
+        <h2>Skills & Interests</h2>
         <ul>
             <li><strong>Languages:</strong> English (Fluent), Russian (Conversational)</li>
-            <li><strong>Technical Skills:</strong> Java, JavaScript</li>
-            <li><strong>Volunteer Experience:</strong> Feed My Starving Children</li>
-            <li><strong>Hobbies:</strong> Music and art</li>
+            <li><strong>Technical:</strong> Java, JavaScript</li>
+            <li><strong>Volunteer:</strong> Feed My Starving Children</li>
+            <li><strong>Hobbies:</strong> Music, Art</li>
         </ul>
     </section>
 
@@ -121,7 +168,8 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Timothy Dobin. All rights reserved.</p>
+        <p>&copy; 2025 Timothy Dobin | <a href="mailto:timdobin12131@gmail.com">Email Me</a></p>
     </footer>
+
 </body>
 </html>
