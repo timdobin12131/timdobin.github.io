@@ -1,0 +1,207 @@
+import React, { useState } from "react";
+
+// Portfolio - Single-file React component (Tailwind CSS assumed available)
+// Default export a component that renders Home, Projects, About, Development pages.
+
+export default function PortfolioApp() {
+  const [page, setPage] = useState("home");
+
+  const videos = {
+    laser: "/mnt/data/LaserDemo.mp4",
+    bossSprites: "/mnt/data/BossSprites.mp4",
+    moves: "/mnt/data/Boss Moves+Moveset.mp4",
+    dash: "/mnt/data/Second Boss Dash Move.mp4",
+  };
+
+  const pdf = "/mnt/data/Untitled document.pdf";
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      <header className="bg-white shadow-sm sticky top-0 z-10">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <h1 className="font-extrabold text-xl">My Project Portfolio</h1>
+          <nav className="space-x-3">
+            <button onClick={() => setPage("home")} className="px-3 py-2 rounded hover:bg-slate-100">Home</button>
+            <button onClick={() => setPage("project")} className="px-3 py-2 rounded hover:bg-slate-100">Project</button>
+            <button onClick={() => setPage("dev")} className="px-3 py-2 rounded hover:bg-slate-100">Development</button>
+            <button onClick={() => setPage("about")} className="px-3 py-2 rounded hover:bg-slate-100">About</button>
+          </nav>
+        </div>
+      </header>
+
+      <main className="max-w-6xl mx-auto px-6 py-10">
+        {page === "home" && (
+          <section>
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h2 className="text-3xl font-bold mb-3">Welcome — Game Project Portfolio</h2>
+                <p className="mb-4 leading-relaxed">This portfolio documents a collaborative action-RPG / boss-battle project I built while learning game programming and design. Below you'll find an overview, videos and downloadable resources demonstrating core mechanics like projectiles, laser weapon, boss movement and dash behavior.</p>
+
+                <ul className="space-y-2 text-sm text-slate-700">
+                  <li><strong>Project purpose:</strong> Build an engaging boss fight with multiple attack patterns, player projectiles, and polished visuals while learning game systems and debugging complex behaviors.</li>
+                  <li><strong>Tech used:</strong> Game engine scripts, sprite sheets, in-editor testing, collaborative coding.</li>
+                </ul>
+
+                <div className="mt-6 flex gap-3">
+                  <button onClick={() => setPage("project")} className="px-4 py-2 rounded bg-slate-900 text-white">View Project</button>
+                  <a href={pdf} download className="px-4 py-2 rounded border">Download Dev Log (PDF)</a>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <h3 className="font-semibold mb-2">Playable Demos & Clips</h3>
+                <p className="text-sm mb-3">View short videos of mechanics and boss moves embedded below. Use the download links if you want the raw files.</p>
+
+                <div className="space-y-3">
+                  <div>
+                    <div className="text-xs font-medium">Laser Demo</div>
+                    <video controls className="w-full rounded mt-1">
+                      <source src={videos.laser} />
+                      Your browser does not support the video tag.
+                    </video>
+                    <a className="text-xs block mt-1" href={`sandbox:${videos.laser}`}>Download Laser Demo</a>
+                  </div>
+
+                  <div>
+                    <div className="text-xs font-medium">Boss Sprites Demo</div>
+                    <video controls className="w-full rounded mt-1">
+                      <source src={videos.bossSprites} />
+                    </video>
+                    <a className="text-xs block mt-1" href={`sandbox:${videos.bossSprites}`}>Download Boss Sprites Demo</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        )}
+
+        {page === "project" && (
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Project — Boss Fight System</h2>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <article className="bg-white p-5 rounded shadow-sm">
+                <h3 className="font-semibold">Overview</h3>
+                <p className="mt-2 text-sm leading-relaxed">This project focuses on building a dynamic boss with quadrant-based movement, multiple projectile patterns (360 burst, rotating bullets, wave projectiles) and player-controlled projectiles including a laser weapon pickup. The boss reacts differently depending on its quadrant and executes context-sensitive moves.</p>
+
+                <h4 className="mt-4 font-medium">Problem solved</h4>
+                <p className="text-sm">Many student projects have static enemies with predictable behavior. This project explores richer AI behavior, player-item interaction (laser pickup) and patterns that encourage skillful play — including destructible projectile waves and dash telegraphing.</p>
+
+                <h4 className="mt-4 font-medium">Unique features</h4>
+                <ul className="list-disc ml-5 text-sm">
+                  <li>Quadrant-based boss movement and move selection</li>
+                  <li>360-degree burst and rotating bullet patterns</li>
+                  <li>Projectile wave that can be destroyed by player's attack</li>
+                  <li>Player pickup: Laser gun with directional firing</li>
+                </ul>
+
+                <div className="mt-4">
+                  <a className="inline-block px-4 py-2 rounded border" href={videos.moves}>Watch Moves + Movement</a>
+                </div>
+              </article>
+
+              <aside className="bg-white p-5 rounded shadow-sm">
+                <h4 className="font-semibold mb-2">Media & Links</h4>
+                <div className="space-y-3">
+                  <div>
+                    <div className="text-xs font-medium">Moves + Movement</div>
+                    <video controls className="w-full rounded mt-1">
+                      <source src={videos.moves} />
+                    </video>
+                    <a className="text-xs block mt-1" href={`sandbox:${videos.moves}`}>Download Moves + Moveset</a>
+                  </div>
+
+                  <div>
+                    <div className="text-xs font-medium">Dash Move (Boss)</div>
+                    <video controls className="w-full rounded mt-1">
+                      <source src={videos.dash} />
+                    </video>
+                    <a className="text-xs block mt-1" href={`sandbox:${videos.dash}`}>Download Dash Move</a>
+                  </div>
+
+                  <div>
+                    <div className="text-xs font-medium">Design + Research Log (PDF)</div>
+                    <a href={pdf} className="text-sm block mt-1">Open Dev Log</a>
+                  </div>
+                </div>
+
+              </aside>
+            </div>
+
+            <div className="mt-6 bg-white p-4 rounded shadow-sm">
+              <h4 className="font-semibold">Working links & how to run</h4>
+              <ol className="list-decimal ml-5 text-sm">
+                <li>Open your engine/editor project folder and drop the provided video and sprite files into the assets folder for reference.</li>
+                <li>Use the provided PDF dev log for step-by-step notes and timestamps of development progress.</li>
+                <li>Test boss behavior in-editor and iterate on timing and collision shapes as noted in the Development page.</li>
+              </ol>
+            </div>
+          </section>
+        )}
+
+        {page === "dev" && (
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Project Development — Progress Log</h2>
+
+            <div className="space-y-4">
+              <article className="bg-white p-4 rounded shadow-sm">
+                <h4 className="font-semibold">Timeline & Key Milestones</h4>
+                <ul className="list-disc ml-5 text-sm mt-2">
+                  <li>Initial tutorials & learning the engine basics (early Sep).</li>
+                  <li>Implemented real-time combat and slash attacks.</li>
+                  <li>Built projectile system and added laser gun pickup (late Sep — Oct).</li>
+                  <li>Developed boss quadrant movement, 360 burst and rotating patterns (Oct 20–31).</li>
+                  <li>Polished sprites, fixed dash bug where boss locked to player coordinates (Nov 20–21).</li>
+                </ul>
+              </article>
+
+              <article className="bg-white p-4 rounded shadow-sm">
+                <h4 className="font-semibold">Challenges & Solutions</h4>
+                <p className="text-sm mt-2">Examples: A projectile direction bug was solved by switching movement logic to use switch-cases for player-facing orientation. Dialogue color "undefined" errors were handled by adding defensive checks. A 360 spread issue was resolved with AI-assisted debugging and iterative testing.</p>
+              </article>
+
+              <article className="bg-white p-4 rounded shadow-sm">
+                <h4 className="font-semibold">Research & Resources</h4>
+                <p className="text-sm mt-2">Key tutorials and references used during development are linked in the dev log PDF; they cover how to set up RPG basics, real-time combat, and XP systems. These tutorials informed structure and code patterns used in the project.</p>
+              </article>
+
+              <article className="bg-white p-4 rounded shadow-sm">
+                <h4 className="font-semibold">Progress Visuals</h4>
+                <p className="text-sm mt-2">Progress screenshots, wireframes, and sprite drafts can be added here. Use the video clips above as short progress captures.</p>
+              </article>
+            </div>
+          </section>
+        )}
+
+        {page === "about" && (
+          <section>
+            <h2 className="text-2xl font-bold mb-4">About Me</h2>
+
+            <div className="bg-white p-6 rounded shadow-sm">
+              <div className="md:flex md:items-center md:gap-6">
+                <div className="w-28 h-28 rounded-full bg-slate-200 flex items-center justify-center text-2xl font-semibold">TD</div>
+                <div>
+                  <h3 className="font-semibold">Timothy — Game Dev Student & Designer</h3>
+                  <p className="text-sm mt-2 leading-relaxed">I build gameplay systems and boss encounters while learning programming fundamentals, sprite work, and collaborative design. I enjoy turning bugs into features and iterating on mechanical feel until a fight "clicks" for players.</p>
+
+                  <p className="mt-3 text-sm"><strong>Skills:</strong> Game scripting, debugging, sprite handling, projectile math, design documentation, collaborative version control.</p>
+                  <p className="mt-2 text-sm"><strong>Aspirations:</strong> Grow toward a role in gameplay programming or level/boss design on commercial titles, continue learning engine tooling and polish techniques.</p>
+
+                  <div className="mt-4 flex gap-3">
+                    <a className="px-3 py-2 rounded border text-sm" href={pdf}>Download Dev Log</a>
+                    <button className="px-3 py-2 rounded bg-slate-900 text-white text-sm">Contact (email)</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </section>
+        )}
+
+        <footer className="mt-12 text-center text-sm text-slate-500">Built with ❤️ — portfolio generated for project documentation. Videos and PDF included as viewable assets.</footer>
+      </main>
+    </div>
+  );
+}
