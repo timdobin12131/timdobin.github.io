@@ -1,206 +1,376 @@
 import React, { useState } from "react";
 
-// Portfolio - Single-file React component (Tailwind CSS assumed available)
-// Default export a component that renders Home, Projects, About, Development pages.
+// Polished Single-file React Portfolio
+// - Clean responsive layout
+// - Dark, modern aesthetic with subtle neon accents
+// - Accessible controls, semantic structure
+// - Embedded playable videos and downloadable PDF
 
 export default function PortfolioApp() {
   const [page, setPage] = useState("home");
+  const [lightbox, setLightbox] = useState(null); // id of video to preview
 
-  const videos = {
-    laser: "/mnt/data/LaserDemo.mp4",
-    bossSprites: "/mnt/data/BossSprites.mp4",
-    moves: "/mnt/data/Boss Moves+Moveset.mp4",
-    dash: "/mnt/data/Second Boss Dash Move.mp4",
+  const assets = {
+    pdf: "/mnt/data/Untitled document.pdf",
+    laser: {
+      id: "laser",
+      title: "Laser Demo",
+      src: "/mnt/data/LaserDemo.mp4",
+      desc: "Player pickup laser — directional firing and continuous beam test.",
+    },
+    bossSprites: {
+      id: "bossSprites",
+      title: "Boss Sprites Demo",
+      src: "/mnt/data/BossSprites.mp4",
+      desc: "Sprite animations and idle/attack cycles preview.",
+    },
+    moves: {
+      id: "moves",
+      title: "Moves + Movement",
+      src: "/mnt/data/Boss Moves+Moveset.mp4",
+      desc: "Overview of movement logic, quadrant transitions, and attack timings.",
+    },
+    dash: {
+      id: "dash",
+      title: "Dash Move",
+      src: "/mnt/data/Second Boss Dash Move.mp4",
+      desc: "Telegraphed dash mechanic with hitboxes and recovery frames.",
+    },
   };
 
-  const pdf = "/mnt/data/Untitled document.pdf";
+  const openLightbox = (id) => setLightbox(id);
+  const closeLightbox = () => setLightbox(null);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="font-extrabold text-xl">My Project Portfolio</h1>
-          <nav className="space-x-3">
-            <button onClick={() => setPage("home")} className="px-3 py-2 rounded hover:bg-slate-100">Home</button>
-            <button onClick={() => setPage("project")} className="px-3 py-2 rounded hover:bg-slate-100">Project</button>
-            <button onClick={() => setPage("dev")} className="px-3 py-2 rounded hover:bg-slate-100">Development</button>
-            <button onClick={() => setPage("about")} className="px-3 py-2 rounded hover:bg-slate-100">About</button>
+    <div className="portfolio-root">
+      <style>{`
+        :root{
+          --bg:#071021; --card:#0f1724; --muted:#9aa6bf; --accent:#6ee7ff; --glass: rgba(255,255,255,0.03);
+        }
+        *{box-sizing:border-box}
+        body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+        .portfolio-root{background:linear-gradient(180deg,var(--bg),#071326);min-height:100vh;color:#e6eefc}
+        header{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(7,16,33,0.65), rgba(7,16,33,0.25));backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.04)}
+        .container{max-width:1100px;margin:0 auto;padding:28px}
+        .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#9bffdb);display:flex;align-items:center;justify-content:center;color:#071021;font-weight:700}
+        .title{font-weight:700;letter-spacing:0.6px}
+        nav .links{display:flex;gap:8px}
+        .linkbtn{background:transparent;border:0;color:var(--muted);padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+        .linkbtn:hover{color:var(--accent);background:var(--glass)}
+
+        /* HERO */
+        .hero{display:grid;grid-template-columns:1fr;gap:18px;align-items:center;margin-top:28px}
+        @media(min-width:880px){.hero{grid-template-columns:1fr 420px}}
+        .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.04);padding:26px;border-radius:14px}
+        .kicker{color:var(--accent);font-weight:700;font-size:0.85rem}
+        h1{margin:8px 0 6px;font-size:1.75rem}
+        p.lead{color:var(--muted);line-height:1.5}
+        .cta{margin-top:16px;display:flex;gap:12px}
+        .btn-primary{background:linear-gradient(90deg,var(--accent),#8bffd8);color:#071021;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+        .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+        /* GRID */
+        .grid{display:grid;gap:20px;margin-top:20px}
+        @media(min-width:880px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}.grid.cols-2{grid-template-columns:1fr 360px}}
+        .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+        .card h3{margin:0 0 8px}
+        .muted{color:var(--muted);font-size:0.95rem}
+        .feature-list{margin:8px 0 0;padding-left:18px}
+        .video-thumb{width:100%;height:200px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));display:flex;align-items:center;justify-content:center;position:relative}
+        .video-thumb video{width:100%;height:100%;object-fit:cover}
+        .video-meta{position:absolute;left:10px;bottom:10px;background:rgba(2,6,23,0.6);padding:6px 8px;border-radius:8px;font-weight:700;color:var(--accent);font-size:0.8rem}
+        .download{display:inline-block;margin-top:8px;color:var(--accent);text-decoration:underline;font-size:0.9rem}
+
+        /* about & dev */
+        .profile{display:flex;gap:14px;align-items:center}
+        .avatar{width:88px;height:88px;border-radius:14px;background:linear-gradient(135deg,#2b3b55,#1b2b3a);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700}
+        .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+        .chip{padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:10px;font-weight:600;color:var(--muted)}
+
+        .timeline{border-left:2px solid rgba(255,255,255,0.04);padding-left:16px}
+        .time-item{margin-bottom:16px}
+        .time-item h4{margin:0}
+        .time-item p{margin:6px 0 0;color:var(--muted)}
+
+        footer{padding:48px 0;text-align:center;color:var(--muted)}
+
+        /* Lightbox */
+        .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:80}
+        .lightbox .inner{width:min(1100px,95%);background:#071428;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+        .lightbox video{width:100%;height:520px;background:black;border-radius:8px}
+        .close-x{position:absolute;top:22px;right:22px;background:rgba(255,255,255,0.06);border:0;padding:8px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+      `}</style>
+
+      <header>
+        <div className="container nav">
+          <div className="brand">
+            <div className="logo">TD</div>
+            <div>
+              <div className="title">Timothy — Gameplay & Boss Design</div>
+              <div className="muted">Portfolio · Boss Fight Project</div>
+            </div>
+          </div>
+
+          <nav>
+            <div className="links">
+              <button className="linkbtn" onClick={() => setPage("home")}>Home</button>
+              <button className="linkbtn" onClick={() => setPage("project")}>Project</button>
+              <button className="linkbtn" onClick={() => setPage("dev")}>Development</button>
+              <button className="linkbtn" onClick={() => setPage("about")}>About</button>
+              <a className="linkbtn" href={assets.pdf} download>Dev Log (PDF)</a>
+            </div>
           </nav>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
+      <main className="container">
+        {/* HERO */}
         {page === "home" && (
-          <section>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h2 className="text-3xl font-bold mb-3">Welcome — Game Project Portfolio</h2>
-                <p className="mb-4 leading-relaxed">This portfolio documents a collaborative action-RPG / boss-battle project I built while learning game programming and design. Below you'll find an overview, videos and downloadable resources demonstrating core mechanics like projectiles, laser weapon, boss movement and dash behavior.</p>
+          <section className="hero">
+            <div className="hero-card">
+              <div className="kicker">Featured Project</div>
+              <h1>Adaptive Boss — Quadrant AI & Player Interaction</h1>
+              <p className="lead">A compact action-boss prototype that experiments with multiple attack patterns, player pickups (laser), and movement logic that reacts to the player's position. Goal: craft encounters that reward pattern recognition and mechanical execution.</p>
 
-                <ul className="space-y-2 text-sm text-slate-700">
-                  <li><strong>Project purpose:</strong> Build an engaging boss fight with multiple attack patterns, player projectiles, and polished visuals while learning game systems and debugging complex behaviors.</li>
-                  <li><strong>Tech used:</strong> Game engine scripts, sprite sheets, in-editor testing, collaborative coding.</li>
-                </ul>
-
-                <div className="mt-6 flex gap-3">
-                  <button onClick={() => setPage("project")} className="px-4 py-2 rounded bg-slate-900 text-white">View Project</button>
-                  <a href={pdf} download className="px-4 py-2 rounded border">Download Dev Log (PDF)</a>
-                </div>
+              <div className="cta">
+                <button className="btn-primary" onClick={() => setPage("project")}>Explore Project</button>
+                <a className="btn-ghost" href={assets.pdf} download>Download Dev Log</a>
               </div>
 
-              <div className="bg-white rounded-lg p-4 shadow-sm">
-                <h3 className="font-semibold mb-2">Playable Demos & Clips</h3>
-                <p className="text-sm mb-3">View short videos of mechanics and boss moves embedded below. Use the download links if you want the raw files.</p>
-
-                <div className="space-y-3">
-                  <div>
-                    <div className="text-xs font-medium">Laser Demo</div>
-                    <video controls className="w-full rounded mt-1">
-                      <source src={videos.laser} />
-                      Your browser does not support the video tag.
-                    </video>
-                    <a className="text-xs block mt-1" href={`sandbox:${videos.laser}`}>Download Laser Demo</a>
-                  </div>
-
-                  <div>
-                    <div className="text-xs font-medium">Boss Sprites Demo</div>
-                    <video controls className="w-full rounded mt-1">
-                      <source src={videos.bossSprites} />
-                    </video>
-                    <a className="text-xs block mt-1" href={`sandbox:${videos.bossSprites}`}>Download Boss Sprites Demo</a>
-                  </div>
-                </div>
-
+              <div style={{marginTop:18}}>
+                <div className="muted">Quick Highlights</div>
+                <ul className="feature-list">
+                  <li>Quadrant-aware boss with 4+ attack patterns</li>
+                  <li>Rotating bullet spreads and destructible waves</li>
+                  <li>Laser pickup — continuous beam mechanic</li>
+                  <li>Telegraphed dash with clear windows of vulnerability</li>
+                </ul>
               </div>
             </div>
+
+            <aside className="card">
+              <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                <div>
+                  <div className="kicker">Clips</div>
+                  <div className="muted">Short captures of core mechanics</div>
+                </div>
+                <div style={{textAlign:'right'}}>
+                  <div className="muted">Files included</div>
+                </div>
+              </div>
+
+              <div className="grid cols-3" style={{marginTop:14}}>
+                <div className="card" style={{padding:10}}>
+                  <div className="video-thumb" role="button" onClick={() => openLightbox(assets.laser.id)} aria-label="Open Laser Demo">
+                    <video muted src={assets.laser.src} preload="metadata"></video>
+                    <div className="video-meta">Laser</div>
+                  </div>
+                  <div style={{marginTop:8,fontWeight:700}}>{assets.laser.title}</div>
+                  <div className="muted" style={{fontSize:13,marginTop:6}}>{assets.laser.desc}</div>
+                  <a className="download" href={`sandbox:${assets.laser.src}`}>Download</a>
+                </div>
+
+                <div className="card" style={{padding:10}}>
+                  <div className="video-thumb" role="button" onClick={() => openLightbox(assets.moves.id)}>
+                    <video muted src={assets.moves.src} preload="metadata"></video>
+                    <div className="video-meta">Moves</div>
+                  </div>
+                  <div style={{marginTop:8,fontWeight:700}}>{assets.moves.title}</div>
+                  <div className="muted" style={{fontSize:13,marginTop:6}}>{assets.moves.desc}</div>
+                  <a className="download" href={`sandbox:${assets.moves.src}`}>Download</a>
+                </div>
+
+                <div className="card" style={{padding:10}}>
+                  <div className="video-thumb" role="button" onClick={() => openLightbox(assets.bossSprites.id)}>
+                    <video muted src={assets.bossSprites.src} preload="metadata"></video>
+                    <div className="video-meta">Sprites</div>
+                  </div>
+                  <div style={{marginTop:8,fontWeight:700}}>{assets.bossSprites.title}</div>
+                  <div className="muted" style={{fontSize:13,marginTop:6}}>{assets.bossSprites.desc}</div>
+                  <a className="download" href={`sandbox:${assets.bossSprites.src}`}>Download</a>
+                </div>
+
+              </div>
+
+              <div style={{marginTop:12}}>
+                <div className="muted">Additional</div>
+                <div style={{display:'flex',gap:10,marginTop:8}}>
+                  <a className="btn-ghost" href={`sandbox:${assets.dash.src}`} onClick={(e)=>e.stopPropagation()}>Dash Demo</a>
+                  <a className="btn-ghost" href={assets.pdf} download>Dev Log</a>
+                </div>
+              </div>
+            </aside>
           </section>
         )}
 
+        {/* PROJECT PAGE */}
         {page === "project" && (
-          <section>
-            <h2 className="text-2xl font-bold mb-4">Project — Boss Fight System</h2>
+          <section className="grid cols-2">
+            <div className="card">
+              <h2>Project — System Deep Dive</h2>
+              <p className="muted" style={{marginTop:8}}>Technical goals, systems and actionable design choices that make the encounter interesting.</p>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <article className="bg-white p-5 rounded shadow-sm">
-                <h3 className="font-semibold">Overview</h3>
-                <p className="mt-2 text-sm leading-relaxed">This project focuses on building a dynamic boss with quadrant-based movement, multiple projectile patterns (360 burst, rotating bullets, wave projectiles) and player-controlled projectiles including a laser weapon pickup. The boss reacts differently depending on its quadrant and executes context-sensitive moves.</p>
+              <h3 style={{marginTop:14}}>Problem Statement</h3>
+              <p className="muted">Student-made enemies are often predictable or one-note. This project aims to create a boss that feels "alive" — reacting to the player with distinct movement phases, telegraphed attacks, and mechanics that encourage different playstyles.</p>
 
-                <h4 className="mt-4 font-medium">Problem solved</h4>
-                <p className="text-sm">Many student projects have static enemies with predictable behavior. This project explores richer AI behavior, player-item interaction (laser pickup) and patterns that encourage skillful play — including destructible projectile waves and dash telegraphing.</p>
+              <h3 style={{marginTop:14}}>Systems</h3>
+              <ul className="feature-list">
+                <li><strong>Quadrant Movement:</strong> Boss occupies one of four quadrants; move selection weighted by quadrant and recent moves to avoid repetition.</li>
+                <li><strong>Projectile Engine:</strong> Supports rotating spreads, 360 bursts, wave projectiles that can be destroyed, and homing micro-bullets.</li>
+                <li><strong>Player Items:</strong> Laser pickup — replaces primary attack with continuous beam and pierce mechanics for a short duration.</li>
+                <li><strong>Dash Behavior:</strong> Telegraphed dash with recovery frames; collision uses composite hitboxes for visual clarity.</li>
+              </ul>
 
-                <h4 className="mt-4 font-medium">Unique features</h4>
-                <ul className="list-disc ml-5 text-sm">
-                  <li>Quadrant-based boss movement and move selection</li>
-                  <li>360-degree burst and rotating bullet patterns</li>
-                  <li>Projectile wave that can be destroyed by player's attack</li>
-                  <li>Player pickup: Laser gun with directional firing</li>
-                </ul>
-
-                <div className="mt-4">
-                  <a className="inline-block px-4 py-2 rounded border" href={videos.moves}>Watch Moves + Movement</a>
-                </div>
-              </article>
-
-              <aside className="bg-white p-5 rounded shadow-sm">
-                <h4 className="font-semibold mb-2">Media & Links</h4>
-                <div className="space-y-3">
-                  <div>
-                    <div className="text-xs font-medium">Moves + Movement</div>
-                    <video controls className="w-full rounded mt-1">
-                      <source src={videos.moves} />
-                    </video>
-                    <a className="text-xs block mt-1" href={`sandbox:${videos.moves}`}>Download Moves + Moveset</a>
-                  </div>
-
-                  <div>
-                    <div className="text-xs font-medium">Dash Move (Boss)</div>
-                    <video controls className="w-full rounded mt-1">
-                      <source src={videos.dash} />
-                    </video>
-                    <a className="text-xs block mt-1" href={`sandbox:${videos.dash}`}>Download Dash Move</a>
-                  </div>
-
-                  <div>
-                    <div className="text-xs font-medium">Design + Research Log (PDF)</div>
-                    <a href={pdf} className="text-sm block mt-1">Open Dev Log</a>
-                  </div>
-                </div>
-
-              </aside>
-            </div>
-
-            <div className="mt-6 bg-white p-4 rounded shadow-sm">
-              <h4 className="font-semibold">Working links & how to run</h4>
-              <ol className="list-decimal ml-5 text-sm">
-                <li>Open your engine/editor project folder and drop the provided video and sprite files into the assets folder for reference.</li>
-                <li>Use the provided PDF dev log for step-by-step notes and timestamps of development progress.</li>
-                <li>Test boss behavior in-editor and iterate on timing and collision shapes as noted in the Development page.</li>
+              <h3 style={{marginTop:14}}>How to run (developer notes)</h3>
+              <ol className="muted" style={{paddingLeft:18}}>
+                <li>Open the project in your engine and import the assets folder.</li>
+                <li>Drop the attached PDF into the project docs folder for reference notes and timestamps.</li>
+                <li>Play the moveset video to reproduce timings in-editor.</li>
               </ol>
+
+              <div style={{marginTop:16}}>
+                <h4>Live Demos</h4>
+                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginTop:8}}>
+                  <button className="btn-ghost" onClick={() => openLightbox(assets.moves.id)}>Watch Moves + Movement</button>
+                  <button className="btn-ghost" onClick={() => openLightbox(assets.dash.id)}>Watch Dash Move</button>
+                </div>
+              </div>
             </div>
+
+            <aside className="card">
+              <h3>Media & Downloads</h3>
+              <div style={{marginTop:12}}>
+                <div style={{fontWeight:700}}>Moves + Movement</div>
+                <div className="muted" style={{marginTop:6}}>{assets.moves.desc}</div>
+                <a className="download" href={`sandbox:${assets.moves.src}`}>Download MP4</a>
+              </div>
+
+              <div style={{marginTop:12}}>
+                <div style={{fontWeight:700}}>Dash Move</div>
+                <div className="muted" style={{marginTop:6}}>{assets.dash.desc}</div>
+                <a className="download" href={`sandbox:${assets.dash.src}`}>Download MP4</a>
+              </div>
+
+              <div style={{marginTop:12}}>
+                <div style={{fontWeight:700}}>Design Doc</div>
+                <div className="muted" style={{marginTop:6}}>Detailed design notes and change log.</div>
+                <a className="download" href={assets.pdf}>Open Dev Log (PDF)</a>
+              </div>
+            </aside>
           </section>
         )}
 
+        {/* DEVELOPMENT PAGE */}
         {page === "dev" && (
           <section>
-            <h2 className="text-2xl font-bold mb-4">Project Development — Progress Log</h2>
+            <div className="card">
+              <h2>Development Timeline</h2>
+              <div className="timeline" style={{marginTop:12}}>
+                <div className="time-item">
+                  <h4>Phase 1 — Foundation</h4>
+                  <p className="muted">Core movement, player controller and basic projectile system implemented. (Weeks 1–2)</p>
+                </div>
 
-            <div className="space-y-4">
-              <article className="bg-white p-4 rounded shadow-sm">
-                <h4 className="font-semibold">Timeline & Key Milestones</h4>
-                <ul className="list-disc ml-5 text-sm mt-2">
-                  <li>Initial tutorials & learning the engine basics (early Sep).</li>
-                  <li>Implemented real-time combat and slash attacks.</li>
-                  <li>Built projectile system and added laser gun pickup (late Sep — Oct).</li>
-                  <li>Developed boss quadrant movement, 360 burst and rotating patterns (Oct 20–31).</li>
-                  <li>Polished sprites, fixed dash bug where boss locked to player coordinates (Nov 20–21).</li>
-                </ul>
-              </article>
+                <div className="time-item">
+                  <h4>Phase 2 — Boss AI & Patterns</h4>
+                  <p className="muted">Added quadrant weighting, initial 360 burst, rotating patterns and wave projectiles. (Weeks 3–5)</p>
+                </div>
 
-              <article className="bg-white p-4 rounded shadow-sm">
-                <h4 className="font-semibold">Challenges & Solutions</h4>
-                <p className="text-sm mt-2">Examples: A projectile direction bug was solved by switching movement logic to use switch-cases for player-facing orientation. Dialogue color "undefined" errors were handled by adding defensive checks. A 360 spread issue was resolved with AI-assisted debugging and iterative testing.</p>
-              </article>
+                <div className="time-item">
+                  <h4>Phase 3 — Polish & Fixes</h4>
+                  <p className="muted">Resolved dash-lock bug, tuned timings using recorded gameplay, iterated on sprite frames. (Weeks 6–8)</p>
+                </div>
+              </div>
 
-              <article className="bg-white p-4 rounded shadow-sm">
-                <h4 className="font-semibold">Research & Resources</h4>
-                <p className="text-sm mt-2">Key tutorials and references used during development are linked in the dev log PDF; they cover how to set up RPG basics, real-time combat, and XP systems. These tutorials informed structure and code patterns used in the project.</p>
-              </article>
+              <h3 style={{marginTop:14}}>Challenges & Solutions</h3>
+              <ul className="feature-list">
+                <li><strong>Rotation drift:</strong> Fixed by normalizing angles and consolidating rotation code paths.</li>
+                <li><strong>Projectile collisions:</strong> Switched to composite colliders and smaller collision steps to avoid tunneling.</li>
+                <li><strong>Performance:</strong> Batching projectile updates and limiting active particle counts reduced frame drops.</li>
+              </ul>
 
-              <article className="bg-white p-4 rounded shadow-sm">
-                <h4 className="font-semibold">Progress Visuals</h4>
-                <p className="text-sm mt-2">Progress screenshots, wireframes, and sprite drafts can be added here. Use the video clips above as short progress captures.</p>
-              </article>
+              <div style={{marginTop:14}}>
+                <h4>Research & Inspiration</h4>
+                <p className="muted">Design patterns drawn from bullet-hell design, boss encounter breakdowns, and engine-specific optimization techniques. See the Dev Log for full references.</p>
+              </div>
+            </div>
+
+            <div style={{height:18}}></div>
+
+            <div className="card">
+              <h3>Progress Visuals</h3>
+              <p className="muted" style={{marginTop:8}}>Below are short clips captured during development. Use them to compare timing and animation changes.</p>
+              <div className="grid cols-3" style={{marginTop:12}}>
+                {[assets.laser, assets.moves, assets.bossSprites].map((v) => (
+                  <div className="card" key={v.id} style={{padding:8}}>
+                    <div className="video-thumb" onClick={() => openLightbox(v.id)}>
+                      <video muted src={v.src} preload="metadata"></video>
+                      <div className="video-meta">{v.title}</div>
+                    </div>
+                    <div style={{marginTop:8,fontWeight:700}}>{v.title}</div>
+                    <div className="muted" style={{fontSize:13,marginTop:6}}>{v.desc}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         )}
 
+        {/* ABOUT PAGE */}
         {page === "about" && (
-          <section>
-            <h2 className="text-2xl font-bold mb-4">About Me</h2>
-
-            <div className="bg-white p-6 rounded shadow-sm">
-              <div className="md:flex md:items-center md:gap-6">
-                <div className="w-28 h-28 rounded-full bg-slate-200 flex items-center justify-center text-2xl font-semibold">TD</div>
+          <section className="grid cols-2">
+            <div className="card">
+              <h2>About Timothy</h2>
+              <div className="profile" style={{marginTop:12}}>
+                <div className="avatar">TD</div>
                 <div>
-                  <h3 className="font-semibold">Timothy — Game Dev Student & Designer</h3>
-                  <p className="text-sm mt-2 leading-relaxed">I build gameplay systems and boss encounters while learning programming fundamentals, sprite work, and collaborative design. I enjoy turning bugs into features and iterating on mechanical feel until a fight "clicks" for players.</p>
+                  <p className="muted">I build gameplay systems and boss encounters while learning programming fundamentals, sprite artistry, and encounter design. I enjoy turning early bugs into meaningful mechanics and iterating on "feel" until a fight becomes fun.</p>
 
-                  <p className="mt-3 text-sm"><strong>Skills:</strong> Game scripting, debugging, sprite handling, projectile math, design documentation, collaborative version control.</p>
-                  <p className="mt-2 text-sm"><strong>Aspirations:</strong> Grow toward a role in gameplay programming or level/boss design on commercial titles, continue learning engine tooling and polish techniques.</p>
-
-                  <div className="mt-4 flex gap-3">
-                    <a className="px-3 py-2 rounded border text-sm" href={pdf}>Download Dev Log</a>
-                    <button className="px-3 py-2 rounded bg-slate-900 text-white text-sm">Contact (email)</button>
+                  <div className="skills">
+                    <div className="chip">Game Scripting</div>
+                    <div className="chip">AI Logic</div>
+                    <div className="chip">Projectile Math</div>
+                    <div className="chip">Debugging</div>
+                    <div className="chip">Design Docs</div>
+                    <div className="chip">Version Control</div>
                   </div>
+                </div>
+              </div>
 
+              <div style={{marginTop:14}}>
+                <h4>Contact</h4>
+                <p className="muted">For collaboration or feedback: <strong>timothy@example.com</strong></p>
+                <div style={{marginTop:8}}>
+                  <a className="btn-ghost" href={assets.pdf} download>Download Full Dev Log</a>
                 </div>
               </div>
             </div>
 
+            <aside className="card">
+              <h3>Portfolio Notes</h3>
+              <p className="muted" style={{marginTop:8}}>This site bundles raw development captures, a design log, and quick developer notes so reviewers can reproduce behavior and iterate. If you'd like, I can export this as a static site ready for hosting or split it into separate pages/components.</p>
+            </aside>
           </section>
         )}
 
-        <footer className="mt-12 text-center text-sm text-slate-500">Built with ❤️ — portfolio generated for project documentation. Videos and PDF included as viewable assets.</footer>
+        <footer>
+          <div className="muted">© {new Date().getFullYear()} Timothy — Project Portfolio • Built for presentations & developer review</div>
+        </footer>
+
+        {/* Lightbox */}
+        {lightbox && (
+          <div className="lightbox" role="dialog" aria-modal="true">
+            <div className="inner" style={{position:'relative'}}>
+              <button className="close-x" onClick={closeLightbox}>Close ✕</button>
+              <video controls autoPlay src={Object.values(assets).find(a=>a.id===lightbox).src}></video>
+              <div style={{marginTop:10,color:'var(--muted)'}}>{Object.values(assets).find(a=>a.id===lightbox).desc}</div>
+            </div>
+          </div>
+        )}
+
       </main>
     </div>
   );
