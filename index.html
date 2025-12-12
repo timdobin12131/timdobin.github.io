@@ -1,643 +1,300 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Arcane Runner — Game Portfolio</title>
-
-  <!--
-    Arcane Runner — Static Portfolio
-    --------------------------------
-    Instructions:
-      1) Save this file as `index.html` at the root of your repo (or in a docs/ folder).
-      2) Place the demo video files in the same folder as this HTML OR place them in an `assets/` subfolder.
-         * If you use an assets/ folder, change the filenames below to `assets/laser-demo.mp4`, etc.
-      3) Filenames (case-sensitive on GitHub Pages):
-         - laser-demo.mp4
-         - boss-sprites-demo.mp4
-         - moves-movement.mp4
-         - full-game-demo.mp4
-      4) Replace placeholder images (profile, screenshots, wireframes) by dropping image files into the repo
-         and editing the src values in the small comment block near each image (all clearly labeled).
-      5) Photos are intentionally not editable from the web UI (no <input type="file"> anywhere). Edit the repo directly.
-      6) For GitHub Pages: push the repo then enable Pages from repo Settings -> Pages -> select main branch / root.
-  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcane Runner Portfolio</title>
 
   <style>
-    /* ---- Base / Reset ---- */
-    :root{
-      --bg:#07070a;
-      --panel:#0f1720;
-      --muted:#9aa4b2;
-      --accent1:#7c3aed;
-      --accent2:#06b6d4;
-      --glass: rgba(255,255,255,0.04);
-      --card-border: rgba(255,255,255,0.06);
-      --maxw:1200px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      min-height:100%;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, var(--bg) 0%, #020204 100%);
-      color:#e6eef8;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
+    /* ============================================================= */
+    /*               GLOBAL STYLE — CLEAN & PROFESSIONAL             */
+    /* ============================================================= */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0b0b;
+      color: white;
     }
 
-    /* ---- Layout ---- */
-    header{
-      position:sticky;
-      top:0;
-      z-index:40;
-      background: linear-gradient(90deg, rgba(10,10,12,0.85), rgba(8,8,10,0.70));
-      border-bottom:1px solid rgba(255,255,255,0.03);
-      backdrop-filter: blur(6px);
-    }
-    .container{max-width:var(--maxw); margin:0 auto; padding:28px 22px;}
-    .row{display:flex; gap:18px; align-items:center;}
-    .spacer{flex:1}
-
-    /* ---- Nav ---- */
-    .brand{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      text-decoration:none;
-      color:inherit;
-    }
-    .logo{
-      width:44px; height:44px; display:inline-grid; place-items:center;
-      background:linear-gradient(135deg,var(--accent1),var(--accent2));
-      border-radius:10px; font-weight:700; color:white; box-shadow: 0 6px 20px rgba(20,20,30,0.5);
-    }
-    nav a{color:var(--muted); text-decoration:none; font-weight:600; margin-left:12px;}
-    nav a:hover{color:white; text-decoration:underline;}
-
-    /* ---- Hero ---- */
-    .hero{
-      padding:64px 22px;
-      background:
-        radial-gradient(600px 300px at 10% 10%, rgba(124,58,237,0.06), transparent 8%),
-        radial-gradient(500px 260px at 90% 90%, rgba(6,182,212,0.04), transparent 8%);
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1fr 440px;
-      gap:34px;
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding:16px 22px;
-      align-items:center;
-    }
-    .title{font-size:34px; font-weight:800; letter-spacing:-0.02em; margin:0 0 10px;}
-    .subtitle{color:var(--muted); margin:0 0 18px; font-size:15px; max-width:620px}
-    .cta-row{display:flex; gap:12px; margin-top:16px;}
-    .btn{
-      padding:12px 18px; border-radius:10px; font-weight:700; cursor:pointer; border:0;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white;
-      box-shadow: 0 8px 30px rgba(12,10,20,0.45);
-    }
-    .btn.secondary{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted);}
-
-    /* ---- Card / Panels ---- */
-    .panel{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
-      border-radius:12px; padding:18px; border:1px solid var(--card-border);
-      box-shadow: 0 8px 40px rgba(2,4,6,0.6);
-    }
-    h2.section-title{margin:0 0 14px; font-size:22px}
-    p.lead{color:var(--muted); margin:0 0 10px}
-
-    /* ---- Grid for content ---- */
-    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
-    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
-    .wide{grid-column: 1 / -1}
-
-    /* ---- Media boxes (videos/images) ---- */
-    .media{
-      background:#000; height:260px; border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.03);
-      display:flex; align-items:center; justify-content:center; color:var(--muted);
-    }
-    .media video{ width:100%; height:100%; object-fit:cover; display:block; }
-
-    /* ---- Feature list / badges ---- */
-    .badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-    .badge{padding:8px 10px; border-radius:8px; background:rgba(255,255,255,0.03); color:var(--muted); font-weight:700; font-size:13px}
-
-    /* ---- Development log styles ---- */
-    .log-entry{border-left:3px solid rgba(255,255,255,0.04); padding:10px 14px; margin-bottom:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent); border-radius:6px}
-    .log-entry time{display:block; color:var(--muted); font-size:13px}
-    .log-entry p{margin:6px 0 0; color:#dbeafe}
-
-    /* ---- About / Contact ---- */
-    .profile{
-      display:flex; gap:18px; align-items:center;
-    }
-    .avatar{width:120px; height:120px; background:linear-gradient(135deg,var(--accent1),var(--accent2)); border-radius:16px; display:grid; place-items:center; font-weight:800; font-size:28px; color:white}
-    .contact-list{list-style:none; padding:0; margin:0; color:var(--muted)}
-
-    /* ---- Footer ---- */
-    footer{padding:26px 22px; margin-top:40px; border-top:1px solid rgba(255,255,255,0.02); color:var(--muted); text-align:center}
-
-    /* ---- Responsive ---- */
-    @media (max-width:980px){
-      .hero-grid{grid-template-columns:1fr; padding:0}
-      .grid{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr}
+    header {
+      background: #111;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #222;
     }
 
-    /* decorative helpers to lengthen file and add instruction spacing */
-    .dev-comment{font-family:monospace; font-size:13px; color:#9db0c8; background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; border:1px dashed rgba(255,255,255,0.02)}
+    nav a {
+      margin: 0 18px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    section {
+      padding: 70px 25px;
+      max-width: 1250px;
+      margin: auto;
+    }
+
+    h1, h2, h3 {
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    /* ============================================================= */
+    /*                           HERO SECTION                        */
+    /* ============================================================= */
+    .hero {
+      text-align: center;
+      padding: 140px 20px;
+      background: linear-gradient(180deg, #101010, #0b0b0b);
+    }
+
+    .hero-sub {
+      max-width: 800px;
+      margin: auto;
+      opacity: 0.85;
+      font-size: 18px;
+    }
+
+    /* ============================================================= */
+    /*                          CARD STYLE                           */
+    /* ============================================================= */
+    .card {
+      background: #181818;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #2d2d2d;
+      margin-bottom: 28px;
+    }
+
+    /* ============================================================= */
+    /*                         GRID LAYOUT                           */
+    /* ============================================================= */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 30px;
+    }
+
+    /* ============================================================= */
+    /*                     VIDEO + IMAGE BOXES                       */
+    /* ============================================================= */
+    .vid-box {
+      width: 100%;
+      height: 280px;
+      background: #000;
+      border-radius: 12px;
+      border: 1px solid #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #666;
+      font-size: 15px;
+      overflow: hidden;
+    }
+
+    video, iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    footer {
+      background: #111;
+      padding: 22px;
+      text-align: center;
+      margin-top: 60px;
+      border-top: 1px solid #222;
+      opacity: 0.8;
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- NAVIGATION HEADER -->
-  <header aria-label="Main header">
-    <div class="container row" role="banner">
-      <a class="brand" href="#home" title="Arcane Runner — Portfolio">
-        <div class="logo">G</div>
-        <div>
-          <div style="font-weight:800">Arcane Runner</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px">Game Dev Portfolio</div>
-        </div>
-      </a>
+<!-- ============================================================= -->
+<!--                           HEADER                               -->
+<!-- ============================================================= -->
+<header>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#development">Development</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-      <div class="spacer"></div>
+<!-- ============================================================= -->
+<!--                           HOME / HERO                           -->
+<!-- ============================================================= -->
+<section id="home" class="hero">
+  <h1>Arcane Runner — Indie Action RPG</h1>
+  <p class="hero-sub">A fast‑paced bullet‑hell action RPG featuring responsive player movement, dynamic boss fights, and hand‑crafted combat mechanics.</p>
+</section>
 
-      <nav aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
-        <a href="#development">Development</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+<!-- ============================================================= -->
+<!--                      PROJECT SHOWCASE SECTION                  -->
+<!-- ============================================================= -->
+<section id="projects">
+  <h2>Project Files & Video Demos</h2>
+  <p>All demos below are VIDEO files. To update the site, place your MP4 files in the SAME folder as this HTML and name them EXACTLY as instructed.</p>
 
-  <!-- HERO -->
-  <section id="home" class="hero" aria-labelledby="hero-title">
-    <div class="hero-grid">
-      <div>
-        <h1 id="hero-title" class="title">Arcane Runner — Experimental Action RPG</h1>
-        <p class="subtitle">
-          A focused prototype exploring tight movement, bullet-hell inspired boss encounters, and modular demo-driven iteration.
-          This portfolio documents the design, development, and playable demos — ready for testing and feedback.
-        </p>
+  <div class="grid">
 
-        <div class="cta-row">
-          <button class="btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Demos</button>
-          <button class="btn secondary" onclick="document.getElementById('development').scrollIntoView({behavior:'smooth'})">Development Log</button>
-        </div>
+    <!-- ============================================================= -->
+    <!--                       LASER DEMO                               -->
+    <!-- ============================================================= -->
+    <div class="card">
+      <h3>Laser Demo</h3>
+      <p>Showcase of the laser pickup system and projectile logic.</p>
+      <div class="vid-box">
+        <!-- ========================= FILE INSTRUCTIONS =========================
+             Place your video file in the SAME folder.
+             Name MUST be EXACTLY:
 
-        <div style="margin-top:18px" class="badges" aria-hidden="true">
-          <div class="badge">Bullet Patterns</div>
-          <div class="badge">Projectile Systems</div>
-          <div class="badge">Boss AI</div>
-          <div class="badge">Sprite Integration</div>
-        </div>
-
-        <div style="margin-top:22px; color:var(--muted);" class="dev-comment">
-          <!-- Developer note:
-               The website is static. Replace the demo files (mp4) by adding them to the repository at the path shown in
-               each media block below. Filenames are exact. If you prefer an assets folder, change the 'src' attribute in the <video> tag.
-          -->
-          To publish on GitHub Pages: commit this file + demo files, push, enable Pages in repo settings.
-        </div>
-      </div>
-
-      <div>
-        <div class="panel">
-          <h3 style="margin:0 0 8px">Quick Overview</h3>
-          <p style="margin:0 0 8px" class="lead">Arcane Runner is a prototype designed to test mechanics, boss patterns, and player feel. This portfolio contains demos, progress logs, design notes, and a downloadable demo plan.</p>
-
-          <div style="display:flex; gap:10px; margin-top:12px;">
-            <a class="btn" href="#projects">Open Demos</a>
-            <a class="btn secondary" href="#development">Read Logs</a>
-          </div>
-
-          <div style="margin-top:14px; color:var(--muted); font-size:13px;">
-            <strong>Note:</strong> Replace demo files by editing the repository files directly. No in-browser uploads.
-          </div>
-        </div>
+             laser-demo.mp4
+           ==================================================================== -->
+        <video src="laser-demo.mp4" controls></video>
       </div>
     </div>
-  </section>
 
-  <!-- PROJECTS / DEMOS -->
-  <main id="projects" class="container" aria-labelledby="projects-title">
-    <h2 id="projects-title" class="section-title">Project Pages & Demos</h2>
-    <p class="lead">Below are the demo pages. Each demo is a video. To update, place the video in the repo and name it exactly as specified in each section's comment. Videos must be MP4 for best browser compatibility.</p>
+    <!-- ============================================================= -->
+    <!--                    BOSS SPRITES DEMO                           -->
+    <!-- ============================================================= -->
+    <div class="card">
+      <h3>Boss Sprites Demo</h3>
+      <p>Displays sprite sheets + boss animation cycles.</p>
+      <div class="vid-box">
+        <!-- ========================= FILE INSTRUCTIONS =========================
+             Name the file EXACTLY:
 
-    <div style="height:12px"></div>
-
-    <!--
-      IMPORTANT: The blocks below use <video src="filename.mp4"> where filename must match exactly.
-      If GitHub Pages serves from a subpath, make sure files are in the same folder as this HTML or provide a correct relative path.
-    -->
-
-    <section aria-labelledby="laser-title" class="grid wide" style="margin-bottom:26px">
-      <!-- Laser Demo (left) -->
-      <article class="panel" style="display:flex; flex-direction:column;">
-        <h3 id="laser-title">Laser Demo</h3>
-        <p class="lead">A focused demo showcasing the laser pickup item and projectile behavior. Includes aiming, firing, and collision tests.</p>
-
-        <div style="margin-top:12px" class="media" aria-hidden="false">
-          <!-- FILE INSTRUCTIONS:
-               1) Put your video file in the same folder as this index.html (or change path below).
-               2) Name the file EXACTLY: laser-demo.mp4
-               3) Supported: MP4 (H.264). For large files, consider compressing or using a CDN.
-          -->
-          <video id="video-laser" controls preload="metadata" muted>
-            <source src="laser-demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-        <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
-          <div class="badge">Filename: <code style="margin-left:8px;color:var(--muted)">laser-demo.mp4</code></div>
-          <div style="flex:1"></div>
-          <a class="btn secondary" href="#development" onclick="document.getElementById('development').scrollIntoView({behavior:'smooth'})">Open Dev Notes</a>
-        </div>
-
-        <div style="margin-top:14px; color:var(--muted); font-size:13px;">
-          <strong>Where to place files:</strong>
-          <ol style="margin-top:8px;">
-            <li>Local dev: place `laser-demo.mp4` next to this index.html; open in browser.</li>
-            <li>GitHub: add `laser-demo.mp4` to the repository (commit + push). GitHub Pages will serve it automatically.</li>
-          </ol>
-        </div>
-      </article>
-
-      <!-- Boss Sprites Demo (right) -->
-      <article class="panel" style="display:flex; flex-direction:column;">
-        <h3 id="boss-title">Boss Sprites Demo</h3>
-        <p class="lead">A showcase of the different animated sprites used for the boss's different moves.</p>
-
-        <div style="margin-top:12px" class="media" aria-hidden="false">
-          <!-- FILE INSTRUCTIONS:
-               1) Name the file EXACTLY: boss-sprites-demo.mp4
-               2) Place it in the same folder or change the path to where you store assets.
-          -->
-          <video id="video-boss" controls preload="metadata" muted>
-            <source src="boss-sprites-demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-        <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
-          <div class="badge">Filename: <code style="margin-left:8px;color:var(--muted)">boss-sprites-demo.mp4</code></div>
-          <div style="flex:1"></div>
-          <a class="btn secondary" href="#about">About the Sprites</a>
-        </div>
-
-        <div style="margin-top:14px; color:var(--muted); font-size:13px;">
-          Tip: For sprite sheets, it's often best to export a short MP4 recording showing frames playing in sequence rather than uploading raw sheets — the demo above expects a playback video.
-        </div>
-      </article>
-    </section>
-
-    <section class="grid wide" aria-labelledby="moves-title" style="margin-bottom:26px;">
-      <!-- Moves + Movement -->
-      <article class="panel" style="display:flex; flex-direction:column;">
-        <h3 id="moves-title">Moves + Movement Demo</h3>
-        <p class="lead">Showcases boss attack moves, as well as movement between quadrants.</p>
-
-        <div style="margin-top:12px" class="media" aria-hidden="false">
-          <!-- FILE INSTRUCTIONS:
-               1) Name the file EXACTLY: moves-movement.mp4
-               2) If the file is large, ensure Git LFS or a release asset; otherwise keep <150MB for Pages.
-          -->
-          <video id="video-moves" controls preload="metadata" muted>
-            <source src="moves-movement.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-        <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
-          <div class="badge">Filename: <code style="margin-left:8px;color:var(--muted)">moves-movement.mp4</code></div>
-          <div style="flex:1"></div>
-          <a class="btn secondary" href="#development">Open Movement Logs</a>
-        </div>
-
-        <div style="margin-top:14px; color:var(--muted); font-size:13px;">
-          Developer instructions:
-          <ul style="margin-top:8px;">
-            <li>If you update the demo, keep the same filename for simplicity.</li>
-            <li>Option: use `assets/moves-movement.mp4` and update the <code>src</code> above accordingly.</li>
-          </ul>
-        </div>
-      </article>
-
-      <!-- Full Game Demo -->
-      <article class="panel" style="display:flex; flex-direction:column;">
-        <h3 id="full-title">Full Game Demo</h3>
-        <p class="lead">A complete playthrough clip with combat, level traversal, boss encounter, and pickups. This is your showcase demo for stakeholders.</p>
-
-        <div style="margin-top:12px" class="media" aria-hidden="false">
-          <!-- FILE INSTRUCTIONS:
-               1) Name the file EXACTLY: full-game-demo.mp4
-               2) This should be a compressed MP4; avoid extremely large files on GitHub Pages (use GitHub Releases or CDN for >100MB).
-          -->
-          <video id="video-full" controls preload="metadata" muted>
-            <source src="full-game-demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-        <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
-          <div class="badge">Filename: <code style="margin-left:8px;color:var(--muted)">full-game-demo.mp4</code></div>
-          <div style="flex:1"></div>
-          <a class="btn secondary" href="#contact">Request Feedback</a>
-        </div>
-
-        <div style="margin-top:14px; color:var(--muted); font-size:13px;">
-          Shipping suggestion:
-          <ol>
-            <li>Keep a short highlight (30–60s) and a full-length playthrough if file size allows.</li>
-            <li>Consider linking long video to YouTube and embed if you want unlimited size and streaming quality.</li>
-          </ol>
-        </div>
-      </article>
-    </section>
-
-    <!-- Visual Showcase (Screenshots / Wireframes) -->
-    <section class="panel wide" style="margin-bottom:26px;">
-      <h3>Visuals — Screenshots & Wireframes</h3>
-      <p class="lead">Replace each placeholder below with an image in the repo. The page intentionally treats visuals as static files — edit the repo to change them.</p>
-
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:12px;">
-        <div class="panel" style="padding:12px;">
-          <div class="media" style="height:160px; background:#071022;">
-            <!-- To change screenshot:
-                 1) Add `screenshot-gameplay.png` to repo.
-                 2) Replace this comment with:
-                    <img src="screenshot-gameplay.png" alt="Gameplay screenshot" style="width:100%;height:100%;object-fit:cover;">
-            -->
-            Gameplay screenshot (place file: screenshot-gameplay.png)
-          </div>
-          <div style="margin-top:8px; color:var(--muted); font-size:13px;">Filename suggestion: <code>screenshot-gameplay.png</code></div>
-        </div>
-
-        <div class="panel" style="padding:12px;">
-          <div class="media" style="height:160px; background:#071022;">
-            <!-- Wireframe placeholder
-                 Place: wireframe-boss.png and replace this comment with an <img>.
-            -->
-            Boss wireframe (place file: wireframe-boss.png)
-          </div>
-          <div style="margin-top:8px; color:var(--muted); font-size:13px;">Filename suggestion: <code>wireframe-boss.png</code></div>
-        </div>
-
-        <div class="panel" style="padding:12px;">
-          <div class="media" style="height:160px; background:#071022;">
-            <!-- Progress screenshot
-                 Place: progress-timeline.png
-            -->
-            Progress timeline (place file: progress-timeline.png)
-          </div>
-          <div style="margin-top:8px; color:var(--muted); font-size:13px;">Filename suggestion: <code>progress-timeline.png</code></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Project Description & Research -->
-    <section class="panel wide" style="margin-bottom:26px;">
-      <h3>Project Description & Research</h3>
-
-      <div style="display:grid; grid-template-columns: 1fr 380px; gap:18px;">
-        <div>
-          <p class="lead">Arcane Runner merges fast movement with projectile-heavy boss fights and careful map design. The project emphasizes:</p>
-          <ul>
-            <li><strong>Player feel:</strong> Precise acceleration, dash tuning, and stop/start movement.</li>
-            <li><strong>Bullet patterns:</strong> Repeating waves, rotating bursts, and destroyable projectile clouds.</li>
-            <li><strong>Modular demos:</strong> Small focused builds to validate ideas quickly (laser, sprites, moves, full game).</li>
-            <li><strong>Iteration log:</strong> Daily entries record challenges and solutions for judges and collaborators.</li>
-          </ul>
-
-          <h4 style="margin-top:12px">Research & Resources</h4>
-          <ol>
-            <li>Bullet-hell pattern design articles and math references.</li>
-            <li>Tutorials on collision systems and fixed timestep physics.</li>
-            <li>Performance tips for large numbers of projectiles.</li>
-          </ol>
-
-          <p style="margin-top:12px; color:var(--muted);">If you'd like, I can convert any of these demos into a separate page with download links or embed a YouTube fallback.</p>
-        </div>
-
-        <aside>
-          <div style="background:linear-gradient(90deg,var(--accent1),var(--accent2)); padding:12px; border-radius:12px;">
-            <h4 style="margin:0">Quick Specs</h4>
-            <ul style="margin-top:10px; color:white; font-weight:700">
-              <li>Engine: Custom / GML (notes)</li>
-              <li>Primary language: GML / JS</li>
-              <li>Assets: Sprite tiles / frame animations</li>
-              <li>Demo format: MP4 recordings</li>
-            </ul>
-          </div>
-
-          <div style="margin-top:14px; padding:12px; background:rgba(255,255,255,0.02); border-radius:12px;">
-            <h5 style="margin:0 0 6px">Testers</h5>
-            <p style="margin:0; color:var(--muted); font-size:13px;">Add playtesters by giving them access to a GitHub release with the demo files, or share the repo.</p>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- DEVELOPMENT LOG (detailed) -->
-  <section id="development" class="container" aria-labelledby="development-title" style="margin-top:24px;">
-    <h2 id="development-title" class="section-title">Project Development — Daily Log & Journey</h2>
-
-    <p class="lead">A selection of logged development entries that track challenges, fixes, and design decisions. This is useful for judges, collaborators, and future retrospection.</p>
-
-    <div style="margin-top:12px; display:grid; grid-template-columns: 1fr 420px; gap:18px;">
-      <div>
-        <!-- Log list (left column) -->
-        <article class="panel" style="margin-bottom:14px;">
-          <h4 style="margin:0 0 8px">Selected Entries (most recent first)</h4>
-
-          <div class="log-entry">
-            <time>2025-11-21</time>
-            <p>Resolved an edge-case where the dash failed to cross the player's coordinate when sprint velocity was high. Added an epsilon check and fixed root cause in the velocity application code.</p>
-          </div>
-
-          <div class="log-entry">
-            <time>2025-10-28</time>
-            <p>Boss now selects specific moves depending on quadrant — introduced state machine for quadrant transitions.</p>
-          </div>
-
-          <div class="log-entry">
-            <time>2025-10-21</time>
-            <p>Created rotating bullet pattern; tested 360-degree spawn and optimized reuse of projectile pool for performance.</p>
-          </div>
-
-          <div class="log-entry">
-            <time>2025-10-02</time>
-            <p>Started adding final boss sprites; iterated on palette and hitbox alignment.</p>
-          </div>
-
-          <div class="log-entry">
-            <time>2025-09-29</time>
-            <p>Implemented projectile damage interaction — projectiles now apply damage when colliding with enemies and can be destroyed.</p>
-          </div>
-
-          <div class="log-entry">
-            <time>2025-09-15</time>
-            <p>Designed pickups for damage and defense; added prototype laser gun item that triggers projectile spawning for player.</p>
-          </div>
-
-          <div class="log-entry">
-            <time>2025-09-12</time>
-            <p>Fixed a dialogue color bug and refactored UI theming to avoid undefined colors in production builds.</p>
-          </div>
-
-          <div style="margin-top:8px; font-size:13px; color:var(--muted);">
-            Note: The full log (every single entry) is kept in the project's progress document. If you'd like, I can export the full log here as JSON or a printable timeline.
-          </div>
-        </article>
-
-        <!-- Research / Resources -->
-        <article class="panel">
-          <h4 style="margin:0 0 8px">Research that helped</h4>
-          <ul>
-            <li>Projectile pooling patterns for performance</li>
-            <li>Design patterns for deterministic movement</li>
-            <li>Math for bullet-hell spread and rotation</li>
-          </ul>
-        </article>
-      </div>
-
-      <aside>
-        <div class="panel" style="margin-bottom:14px;">
-          <h4 style="margin:0 0 8px">Roadmap</h4>
-          <ol>
-            <li>Complete leveling & XP</li>
-            <li>Balance boss health & phases</li>
-            <li>Finalize asset polishing & audio</li>
-            <li>Prepare a playable build for distribution</li>
-          </ol>
-        </div>
-
-        <div class="panel">
-          <h4 style="margin:0 0 8px">Testing notes</h4>
-          <p style="margin:0; color:var(--muted);">Observed slowdown when >300 active projectiles on low-end devices — pooling and culling strategies are in progress to address this.</p>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="container" style="margin-top:20px;">
-    <h2 class="section-title">About Me</h2>
-
-    <div style="display:grid; grid-template-columns:220px 1fr; gap:18px; align-items:start;">
-      <div class="panel" style="text-align:center">
-        <div class="avatar">TD</div>
-        <div style="margin-top:12px; color:var(--muted); font-size:13px;">Timothy — Lead Developer</div>
-
-        <div style="margin-top:12px; text-align:left; color:var(--muted); font-size:13px;">
-          <!-- PROFILE PHOTO:
-               If you want a personal photo, add `profile-photo.png` and replace this comment with:
-               <img src="profile-photo.png" alt="Timothy" style="width:100%; border-radius:10px;">
-               Photos are not editable from the web UI; edit repository file directly.
-          -->
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3 style="margin:0 0 8px">Short bio</h3>
-        <p style="margin:0 0 8px; color:var(--muted);">I focus on tight player controls, responsive combat loops, and boss design. I enjoy iterating via small focused demos to test systems rapidly.</p>
-
-        <h4 style="margin-top:10px">Skills</h4>
-        <ul>
-          <li>GML / GameMaker scripting</li>
-          <li>Prototype-driven design</li>
-          <li>Sprite animation & integration</li>
-          <li>Bullet pattern composition</li>
-        </ul>
-
-        <h4 style="margin-top:10px">Experience & Aspirations</h4>
-        <p style="color:var(--muted)">Collaborated on map design, implemented projectile systems, and tuned boss phases. Long-term goal: ship a polished, boss-centric demo for press and playtesters.</p>
+             boss-sprites-demo.mp4
+           ==================================================================== -->
+        <video src="boss-sprites-demo.mp4" controls></video>
       </div>
     </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="container" style="margin-top:20px;">
-    <h2 class="section-title">Contact</h2>
+    <!-- ============================================================= -->
+    <!--                  MOVES + MOVEMENT DEMO                         -->
+    <!-- ============================================================= -->
+    <div class="card">
+      <h3>Moves + Movement Demo</h3>
+      <p>Character movement testing + boss attack logic previews.</p>
+      <div class="vid-box">
+        <!-- ========================= FILE INSTRUCTIONS =========================
+             Name the file EXACTLY:
 
-    <div class="panel" style="display:flex; gap:18px; align-items:center;">
-      <div style="min-width:240px;">
-        <div style="font-weight:800; font-size:18px">Get in touch</div>
-        <div style="color:var(--muted); margin-top:8px">For collaboration, playtest invites, or feedback.</div>
-      </div>
-
-      <div style="flex:1">
-        <!--
-          Contact note:
-          - This template does not include a working backend contact form.
-          - For GitHub Pages, either place a mailto: link, or integrate a form service (Formspree, Netlify Forms).
-        -->
-        <ul class="contact-list">
-          <li><strong>Email:</strong> your.email@example.com</li>
-          <li><strong>Discord:</strong> Timothy#1234 (optional)</li>
-          <li><strong>Repo:</strong> link to your GitHub repository</li>
-        </ul>
-      </div>
-
-      <div style="min-width:220px; text-align:right;">
-        <a class="btn" href="mailto:your.email@example.com">Email me</a>
+             moves-movement.mp4
+           ==================================================================== -->
+        <video src="moves-movement.mp4" controls></video>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div style="max-width:var(--maxw); margin:0 auto; padding:6px 22px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
-        <div>&copy; <span id="year"></span> Arcane Runner</div>
-        <div style="color:var(--muted); font-size:13px">Built for presentation & iteration. Replace demos by pushing files to the repository.</div>
+    <!-- ============================================================= -->
+    <!--                       FULL GAME DEMO                           -->
+    <!-- ============================================================= -->
+    <div class="card">
+      <h3>Full Game Demo</h3>
+      <p>Complete playable showcase including all systems and boss logic.</p>
+      <div class="vid-box" style="height:480px;">
+        <!-- ==================== FULL GAME DEMO OPTIONS ====================
+             Option A (recommended): LINKED VIDEO
+             - Upload your Full Game Demo video to Google Drive
+             - Replace the iframe src below with your share link
+
+             Option B: Local MP4 file
+             - Place the file in SAME folder
+             - Name MUST be EXACTLY:
+
+               full-game-demo.mp4
+
+             And replace the iframe with:
+             <video src="full-game-demo.mp4" controls></video>
+           ==================================================================== -->
+        <iframe src="https://drive.google.com/file/d/1VzhMvLrBrOD2QyW1lnqrcYXABNtqEJ3T/preview" allow="autoplay"></iframe>
       </div>
     </div>
-  </footer>
 
-  <script>
-    // Small enhancement: show current year
-    document.getElementById('year').textContent = new Date().getFullYear();
+  </div>
+</section>
 
-    // Optional: simple keyboard shortcuts for testers (space toggles the currently focused video play/pause)
-    document.addEventListener('keydown', function(e){
-      if(e.code === 'Space'){
-        const v = document.activeElement && document.activeElement.tagName === 'VIDEO' ? document.activeElement : null;
-        if(v){
-          e.preventDefault();
-          if(v.paused) v.play(); else v.pause();
-        }
-      }
-    });
+<!-- ============================================================= -->
+<!--                 DEVELOPMENT LOG + FEATURES SECTION             -->
+<!-- ============================================================= -->
+<section id="development">
+  <h2>Project Development</h2>
 
-    // Helpful console reminders (developers who open the console will see instructions)
-    console.log('%cArcane Runner portfolio loaded — dev notes:', 'font-weight:700; color:#9db0c8');
-    console.log('1) To update demos: add the MP4s with filenames listed in the page (e.g., laser-demo.mp4).');
-    console.log('2) To embed remote video, replace <source src="..."> with a full URL or an assets path (e.g., assets/laser-demo.mp4).');
-    console.log('3) Photos are static: replace image files in the repo to update visuals.');
-  </script>
+  <!-- CURRENT FEATURES -->
+  <div class="card">
+    <h3>Current Features</h3>
+    <ul>
+      <li>Map collision</li>
+      <li>Real‑time combat</li>
+      <li>Health + stamina system</li>
+      <li>Sprinting system</li>
+      <li>Basic enemy AI</li>
+      <li>Integrated sprites (map, enemy, player)</li>
+      <li>Dialogue / NPC system</li>
+    </ul>
+  </div>
 
-  <!--
-    END OF FILE
-    This HTML intentionally contains numerous comments and instructions so you can:
-      - Drop in files easily.
-      - See exactly where to replace images/videos.
-      - Host directly on GitHub Pages.
-    If you'd like, I can:
-      - Produce a zipped repo with index.html + sample placeholder mp4 files (small silent loops).
-      - Create a docs/ folder structure + README.md with deployment instructions for GitHub Pages.
-      - Convert the visual design to use a CSS framework (Tailwind) instead of custom CSS.
-  -->
-</body>
-</html>
+  <!-- PLANNED FEATURES -->
+  <div class="card">
+    <h3>Planned Features</h3>
+    <ul>
+      <li>Leveling & skill progression</li>
+      <li>Pickups & upgrades</li>
+      <li>Boss expansion system</li>
+    </ul>
+  </div>
+
+  <!-- DAILY LOG -->
+  <div class="card">
+    <h3>Daily Progress Log</h3>
+    <ul>
+      <li>Fixed dialogue color bug</li>
+      <li>Expanded pickup + projectile design</li>
+      <li>Implemented rotating bullet pattern</li>
+      <li>Added destroyable projectile waves</li>
+      <li>Programmed boss quadrant movement logic</li>
+      <li>Patched dash coordinate desync bug</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!--                           ABOUT ME                              -->
+<!-- ============================================================= -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="card">
+    <p><strong>Developer:</strong> Timothy</p>
+    <p><strong>Skills:</strong> GML, realtime combat systems, boss scripting, sprite integration, level mechanics</p>
+    <p><strong>Aspiration:</strong> Build a polished, fully playable boss demo</p>
+
+    <div class="vid-box" style="height:260px;">
+      <!-- ========================= PROFILE IMAGE =========================
+           Place an image file in the SAME folder.
+           Name it whatever you want and replace the text below:
+
+           Example:
+           <img src="my-photo.png" />
+           ==================================================================== -->
+      PROFILE PHOTO
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!--                           CONTACT                              -->
+<!-- ============================================================= -->
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card">
+    <p>Email: your.email@example.com</p>
