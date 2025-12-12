@@ -581,4 +581,194 @@
             <ul class="log-list">
               <!-- Each log-entry contains a date and a note -->
               <li class="log-entry"><div class="date">2025-09-12</div><div class="note">Fixed dialogue color undefined bug and improved UI readout for text boxes.</div></li>
-              <li class="log-entry"><div class="date">2025-09-15</div><div class="note">Designed pickups for damage /
+              <li class="log-entry"><div class="date">2025-09-15</div><div class="note">Designed pickups for damage / defense; integrated laser gun pickup and effects.</div></li>
+              <li class="log-entry"><div class="date">2025-09-23</div><div class="note">Drafted player-controlled projectile ideas and tested 0/1 degrees for spread patterns.</div></li>
+              <li class="log-entry"><div class="date">2025-10-01</div><div class="note">Added laser gun item enabling player projectiles on pickup; tuned animation curves.</div></li>
+              <li class="log-entry"><div class="date">2025-10-21</div><div class="note">Developed rotating bullet pattern and tested at multiple framerates.</div></li>
+              <li class="log-entry"><div class="date">2025-10-28</div><div class="note">Boss behavior adjusted per quadrant; limited move triggers to avoid overlap.</div></li>
+              <li class="log-entry"><div class="date">2025-11-03</div><div class="note">Prepared project presentation and collected user feedback from playtests.</div></li>
+              <li class="log-entry"><div class="date">2025-11-21</div><div class="note">Resolved bug where dash didn't move past player coordinates by adjusting target position math.</div></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Right column: visual progress, sketches, and quick gallery -->
+        <aside>
+          <div class="card">
+            <h3>Progress Visuals</h3>
+            <p class="muted">Replace the following image files by adding them to the folder:</p>
+            <ul style="color:var(--muted); margin-left:18px">
+              <li><code>screenshot-1.png</code> — Map collision screenshot</li>
+              <li><code>screenshot-2.png</code> — Boss pattern annotated GIF (convert to MP4 if needed)</li>
+              <li><code>prototype-wireframe.png</code> — UI wireframe image</li>
+            </ul>
+
+            <div style="margin-top:12px">
+              <div class="media-frame" style="height:150px">
+                <!-- If screenshot-1.png exists, place it in repo. Otherwise this shows a placeholder. -->
+                <img src="screenshot-1.png" alt="Screenshot 1 placeholder" onerror="this.style.display='none'; this.parentNode.innerText='Add screenshot-1.png to the folder to display this image'" style="width:100%; height:100%; object-fit:cover;" />
+                <div style="color:rgba(255,255,255,0.06); font-weight:800">Screenshot placeholder</div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px; font-size:13px; color:var(--muted)">
+              <strong>Tip:</strong> Use lossless PNGs for screenshots, but compress large videos. Keep demo videos under ~60MB for quick loading on GitHub Pages.
+            </div>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <div class="card">
+            <h3>Research Notes</h3>
+            <p class="muted">Short notes for future reference:</p>
+            <ol style="color:var(--muted); margin-left:18px">
+              <li>Use object pooling to reduce GC spikes.</li>
+              <li>Keep projectile update loops O(n) and use spatial partitioning if needed.</li>
+              <li>Capture debug overlays separately for reviewers.</li>
+            </ol>
+          </div>
+
+        </aside>
+
+      </div> <!-- end dev-grid -->
+
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="block" aria-labelledby="about-title">
+      <h2 id="about-title">About Me</h2>
+
+      <div class="card profile" style="padding:18px;">
+        <div style="min-width:200px">
+          <div class="avatar">
+            <!-- PROFILE IMAGE INSTRUCTIONS:
+                 - Place a profile image file named profile-photo.png or profile-photo.jpg in this folder.
+                 - Image should be ~600x600 px ideally.
+                 - This site will display it by default when the file exists.
+                 - The image is NOT editable from the website.
+            -->
+            <img src="profile-photo.png" alt="Profile photo" onerror="this.style.display='none'; this.parentNode.innerHTML='Add profile-photo.png to the folder to show your photo';" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+
+        <div style="flex:1">
+          <h3 style="margin:0">Timothy — Game Developer</h3>
+          <p class="muted" style="margin-top:8px">I build gameplay systems with a focus on tight controls, sprite-based visuals, and boss design. My background ranges across scripting, animation integration, and rapid iteration for playtesting.</p>
+
+          <div style="margin-top:12px">
+            <strong>Skills</strong>
+            <div class="skills" style="margin-top:8px">
+              <div class="chip">GML / JS / Lua</div>
+              <div class="chip">Realtime combat</div>
+              <div class="chip">Boss scripting</div>
+              <div class="chip">Sprite integration</div>
+              <div class="chip">Leveling systems</div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px">
+            <strong>Experience & aspirations</strong>
+            <p class="muted" style="margin-top:6px">Collaborated on sprite pipelines and boss design. Aspiration: ship a polished boss encounter demo that demonstrates responsive combat and elegant telegraphing.</p>
+          </div>
+
+          <div style="margin-top:12px">
+            <strong>Contact</strong>
+            <p class="muted" style="margin-top:6px">Email: <code>your.email@example.com</code></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="block" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact & Collaborate</h2>
+      <div class="card">
+        <p class="muted">If you'd like to test demos, collaborate, or provide feedback, email me at <code>your.email@example.com</code>. If you're viewing this on GitHub, you can also open issues or PRs with improvements.</p>
+
+        <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap">
+          <a href="mailto:your.email@example.com" class="btn primary" style="text-decoration:none">Email</a>
+          <a href="https://github.com" class="btn ghost" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="sitefoot">
+    <div class="wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+        <div>&copy; <span id="year"></span> Arcane Runner — Portfolio</div>
+        <div style="color:var(--muted)">Built for clarity • Demos served from the project folder</div>
+      </div>
+    </div>
+  </footer>
+
+  <!--
+    BIG COMMENT BLOCK — Quick Reference (copy this into your README.md)
+
+    HOW TO DEPLOY ON GITHUB PAGES:
+    1) Create a new GitHub repository (public).
+    2) Add this file as index.html in the repository root.
+    3) Add the demo files to the same folder (root):
+       - laser-demo.mp4
+       - boss-sprites-demo.mp4
+       - moves-movement.mp4
+       - dash-move.mp4
+       Optional:
+       - profile-photo.png
+       - screenshot-1.png
+    4) Commit and push.
+    5) In repository settings -> Pages, set source to the main branch root (or /docs), then save.
+    6) The site should be available at: https://<username>.github.io/<repo-name>/ (give it a minute).
+
+    NOTES:
+    - If your videos are very large, GitHub may not serve them well; consider links to GitHub Releases or external hosting.
+    - To keep the site working in an offline folder, browsers may block local video autoplay; visitors must click play.
+    - filenames are case-sensitive on many servers (Linux). Use the exact names.
+
+    If you want, I can generate a ZIP with this HTML and sample placeholder MP4s (very small sample clips) for direct upload to GH.
+  -->
+
+  <script>
+    // small interactivity: highlight active nav link and year
+    (function(){
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const links = document.querySelectorAll('nav.topnav a');
+      const sections = Array.from(links).map(l => {
+        const href = l.getAttribute('href');
+        if(!href || href === '#') return null;
+        const id = href.replace('#','');
+        return { link: l, section: document.getElementById(id) };
+      }).filter(Boolean);
+
+      function setActiveOnScroll(){
+        const y = window.scrollY + 140;
+        let current = sections[0];
+        for(let i=0;i<sections.length;i++){
+          const s = sections[i].section;
+          if(!s) continue;
+          if(s.offsetTop <= y) current = sections[i];
+        }
+        sections.forEach(s => s.link.classList.remove('active'));
+        if(current && current.link) current.link.classList.add('active');
+      }
+      setActiveOnScroll();
+      window.addEventListener('scroll', setActiveOnScroll, {passive:true});
+
+      // Smooth scroll for nav
+      document.querySelectorAll('nav.topnav a').forEach(a=>{
+        a.addEventListener('click', function(e){
+          const href = a.getAttribute('href');
+          if(!href || !href.startsWith('#')) return;
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        })
+      })
+    })();
+  </script>
+</body>
+</html>
