@@ -2,13 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hell's Dungeon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Timothy Dobin | Portfolio</title>
 
   <style>
-    /* ============================================================= */
-    /*               GLOBAL STYLE — CLEAN & PROFESSIONAL             */
-    /* ============================================================= */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -18,275 +15,163 @@
 
     header {
       background: #111;
-      padding: 20px;
+      padding: 18px;
       position: sticky;
       top: 0;
-      z-index: 100;
       border-bottom: 1px solid #222;
+      z-index: 100;
     }
 
     nav a {
-      margin: 0 18px;
       color: white;
+      margin: 0 16px;
       text-decoration: none;
       font-weight: bold;
       font-size: 15px;
     }
 
     section {
-      padding: 70px 25px;
-      max-width: 1250px;
+      padding: 80px 24px;
+      max-width: 1200px;
       margin: auto;
     }
 
     h1, h2, h3 {
       margin-bottom: 12px;
-      font-weight: bold;
     }
 
-    /* ============================================================= */
-    /*                           HERO SECTION                        */
-    /* ============================================================= */
+    .card {
+      background: #181818;
+      padding: 28px;
+      border-radius: 12px;
+      border: 1px solid #2d2d2d;
+      margin-bottom: 26px;
+    }
+
     .hero {
       text-align: center;
       padding: 140px 20px;
       background: linear-gradient(180deg, #101010, #0b0b0b);
     }
 
-    .hero-sub {
-      max-width: 800px;
-      margin: auto;
-      opacity: 0.85;
-      font-size: 18px;
-    }
-
-    /* ============================================================= */
-    /*                          CARD STYLE                           */
-    /* ============================================================= */
-    .card {
-      background: #181818;
-      padding: 30px;
-      border-radius: 12px;
-      border: 1px solid #2d2d2d;
-      margin-bottom: 28px;
-    }
-
-    /* ============================================================= */
-    /*                         GRID LAYOUT                           */
-    /* ============================================================= */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 30px;
-    }
-
-    /* ============================================================= */
-    /*                     VIDEO + IMAGE BOXES                       */
-    /* ============================================================= */
-    .vid-box {
+    iframe {
       width: 100%;
-      height: 280px;
-      background: #000;
-      border-radius: 12px;
-      border: 1px solid #444;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #666;
-      font-size: 15px;
-      overflow: hidden;
-    }
-
-    video, iframe {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
+      height: 900px;
+      border: none;
+      border-radius: 14px;
+      margin-top: 20px;
     }
 
     footer {
       background: #111;
-      padding: 22px;
       text-align: center;
-      margin-top: 60px;
+      padding: 22px;
       border-top: 1px solid #222;
-      opacity: 0.8;
+      opacity: 0.85;
     }
   </style>
 </head>
 
 <body>
 
-<!-- ============================================================= -->
-<!--                           HEADER                               -->
-<!-- ============================================================= -->
 <header>
   <nav>
     <a href="#home">Home</a>
-    <a href="#projects">Projects</a>
-    <a href="#development">Development</a>
     <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<!-- ============================================================= -->
-<!--                           HOME / HERO                           -->
-<!-- ============================================================= -->
+<!-- HERO -->
 <section id="home" class="hero">
-  <h1>Hell's Dungeon — Indie Action RPG</h1>
-  <p class="hero-sub">A fast‑paced bullet‑hell action RPG featuring responsive player movement, dynamic boss fights, and hand‑crafted combat mechanics.</p>
+  <h1>Timothy Dobin</h1>
+  <p>Aspiring Engineer • Game Developer • Technical Creator</p>
 </section>
 
-<!-- ============================================================= -->
-<!--                      PROJECT SHOWCASE SECTION                  -->
-<!-- ============================================================= -->
-<section id="projects">
-  <h2>Project Files & Video Demos</h2>
-
-  <div class="grid">
-
-    <!-- ============================================================= -->
-    <!--                       LASER DEMO                               -->
-    <!-- ============================================================= -->
-    <div class="card">
-      <h3>Laser Demo</h3>
-      <p>Showcase of the laser pickup system and projectile logic.</p>
-      <div class="vid-box">
-        <!-- ========================= FILE INSTRUCTIONS =========================
-             Place your video file in the SAME folder.
-             Name MUST be EXACTLY:
-
-             laser-demo.mp4
-           ==================================================================== -->
-        <video src="laser-demo.mp4" controls></video>
-      </div>
-    </div>
-
-    <!-- ============================================================= -->
-    <!--                    BOSS SPRITES DEMO                           -->
-    <!-- ============================================================= -->
-    <div class="card">
-      <h3>Boss Sprites Demo</h3>
-      <p>Displays sprite sheets + boss animation cycles.</p>
-      <div class="vid-box">
-        <!-- ========================= FILE INSTRUCTIONS =========================
-             Name the file EXACTLY:
-
-             boss-sprites-demo.mp4
-           ==================================================================== -->
-        <video src="boss-sprites-demo.mp4" controls></video>
-      </div>
-    </div>
-
-    <!-- ============================================================= -->
-    <!--                  MOVES + MOVEMENT DEMO                         -->
-    <!-- ============================================================= -->
-    <div class="card">
-      <h3>Moves + Movement Demo</h3>
-      <p>Character movement testing + boss attack logic previews.</p>
-      <div class="vid-box">
-        <!-- ========================= FILE INSTRUCTIONS =========================
-             Name the file EXACTLY:
-
-             moves-movement.mp4
-           ==================================================================== -->
-        <video src="moves-movement.mp4" controls></video>
-      </div>
-    </div>
-
-    <!-- ============================================================= -->
-    <!--                       FULL GAME DEMO                           -->
-    <!-- ============================================================= -->
-    <div class="card">
-      <h3>Full Game Demo</h3>
-      <p>Complete playable showcase including all systems and boss logic.</p>
-      <div class="vid-box" style="height:480px;">
-        <!-- ==================== FULL GAME DEMO OPTIONS ====================
-             Option A (recommended): LINKED VIDEO
-             - Upload your Full Game Demo video to Google Drive
-             - Replace the iframe src below with your share link
-
-             Option B: Local MP4 file
-             - Place the file in SAME folder
-             - Name MUST be EXACTLY:
-
-               full-game-demo.mp4
-
-             And replace the iframe with:
-             <video src="full-game-demo.mp4" controls></video>
-           ==================================================================== -->
-        <iframe src="https://drive.google.com/file/d/1VzhMvLrBrOD2QyW1lnqrcYXABNtqEJ3T/preview" allow="autoplay"></iframe>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================================================= -->
-<!--                 DEVELOPMENT LOG + FEATURES SECTION             -->
-<!-- ============================================================= -->
-<section id="development">
-  <h2>Project Development</h2>
-
-  <!-- CURRENT FEATURES -->
-  <div class="card">
-    <h3>Current Features</h3>
-    <ul>
-      <li>Map collision</li>
-      <li>Real‑time combat</li>
-      <li>Health + stamina system</li>
-      <li>Sprinting system</li>
-      <li>Basic enemy AI</li>
-      <li>Integrated sprites (map, enemy, player)</li>
-      <li>Dialogue / NPC system</li>
-    </ul>
-  </div>
-
-  <!-- PLANNED FEATURES -->
-  <div class="card">
-    <h3>Planned Features</h3>
-    <ul>
-      <li>Leveling & skill progression</li>
-      <li>Pickups & upgrades</li>
-      <li>Boss expansion system</li>
-    </ul>
-  </div>
-
-  <!-- DAILY LOG -->
-  <div class="card">
-    <h3>Daily Progress Log</h3>
-    <ul>
-      <li>Fixed dialogue color bug</li>
-      <li>Expanded pickup + projectile design</li>
-      <li>Implemented rotating bullet pattern</li>
-      <li>Added destroyable projectile waves</li>
-      <li>Programmed boss quadrant movement logic</li>
-      <li>Patched dash coordinate desync bug</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============================================================= -->
-<!--                           ABOUT ME                              -->
-<!-- ============================================================= -->
+<!-- ABOUT -->
 <section id="about">
-  <h2>About Me</h2>
   <div class="card">
-    <p><strong>Developer:</strong> Timothy</p>
-    <p><strong>Skills:</strong> GML, realtime combat systems, boss scripting, sprite integration, level mechanics</p>
-    <p><strong>Aspiration:</strong> Build a polished, fully playable boss demo</p>
-
-
-    
-    </div>
+    <h2>About Me</h2>
+    <p>
+      I’m a high-achieving student developer focused on engineering, real-time systems,
+      and interactive software. I enjoy building complex mechanics from scratch and
+      refining systems until they feel polished and responsive.
+    </p>
   </div>
 </section>
 
-<!-- ============================================================= -->
-<!--                           CONTACT                              -->
-<!-- ============================================================= -->
-<section id="contact">
-  <h2>Contact</h2>
+<!-- SKILLS -->
+<section id="skills">
   <div class="card">
+    <h2>Technical Skills</h2>
+    <ul>
+      <li>Java, JavaScript</li>
+      <li>GameMaker Language (GML)</li>
+      <li>Real-time combat & boss logic</li>
+      <li>Sprite systems & collision mechanics</li>
+      <li>Level & gameplay design</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="card">
+    <h2>Featured Project — Hell’s Dungeon</h2>
+    <p>
+      A fast-paced bullet-hell action RPG showcasing custom combat logic,
+      player movement systems, and boss AI.
+    </p>
+
+    <!-- EMBEDDED PROJECT PAGE (UNCHANGED) -->
+    <iframe src="hells-dungeon.html"></iframe>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="card">
+    <h2>Experience</h2>
+    <h3>Crew Member — AMC Theatres</h3>
+    <p><em>October 2024 – Present</em></p>
+    <ul>
+      <li>Volunteered for high-traffic shifts to improve team efficiency</li>
+      <li>Top seller in Chicago Market Snack Pack competition</li>
+      <li>Generated over $2,000 in sales</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Education</h2>
+    <p><strong>Vernon Hills High School</strong> — Expected Graduation 2026</p>
+    <ul>
+      <li>GPA: 4.42</li>
+      <li>AP Scholar with Distinction</li>
+      <li>Computer Science Club</li>
+      <li>VHHS Jazz Band (Drummer, 3 years)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="card">
+    <h2>Contact</h2>
     <p>Email: timdobin12131@gmail.com</p>
+    <p>
+      <a href="assets/resume.pdf" target="_blank" style="color:#7aa2ff;">
+        View Resume (PDF)
+      </a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Timothy Dobin — Portfolio
+</footer>
+
+</body>
+</html>
