@@ -69,6 +69,69 @@
       border-top: 1px solid #222;
       opacity: 0.85;
     }
+
+    /* --- NEW CSS FOR TIMELINE --- */
+    .timeline-container {
+      margin-top: 20px;
+      border-left: 2px solid #333;
+      padding-left: 20px;
+      margin-left: 10px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 25px;
+      cursor: pointer;
+    }
+
+    /* The Dot on the timeline */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -27px; /* Aligns with border-left */
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: #555;
+      border-radius: 50%;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .timeline-item:hover::before {
+      background: #7aa2ff;
+    }
+
+    .timeline-item.active::before {
+      background: #7aa2ff;
+      box-shadow: 0 0 10px rgba(122, 162, 255, 0.6);
+    }
+
+    .timeline-head {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #eee;
+    }
+
+    .timeline-date {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    /* Hidden content area */
+    .timeline-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    /* Expanded content area */
+    .timeline-item.active .timeline-body {
+      max-height: 500px; /* Arbitrary large height */
+      margin-top: 5px;
+    }
   </style>
 </head>
 
@@ -80,18 +143,16 @@
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
+    <a href="#infernal">Infernal Gauntlet</a> <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<!-- HERO -->
 <section id="home" class="hero">
   <h1>Timothy Dobin</h1>
   <p>Aspiring Engineer • Game Developer • Technical Creator</p>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="card">
     <h2>About Me</h2>
@@ -103,7 +164,6 @@
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="card">
     <h2>Technical Skills</h2>
@@ -117,7 +177,6 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="card">
     <h2>Featured Project — Hell’s Dungeon</h2>
@@ -126,12 +185,76 @@
       player movement systems, and boss AI.
     </p>
 
-    <!-- EMBEDDED PROJECT PAGE (UNCHANGED) -->
     <iframe src="hells-dungeon.html"></iframe>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+<section id="infernal">
+  <div class="card">
+    <h2>Project Title — Infernal Gauntlet</h2>
+    
+    <h3 style="color:#ccc; margin-top:20px;">Problem Statement</h3>
+    <p>I am trying to make a fun boss fighting game with bullet hell combat.</p>
+
+    <h3 style="color:#ccc; margin-top:20px;">AI Approach</h3>
+    <p>
+      I want to integrate AI into my project by utilizing it when I face bugs or standstills in my code. 
+      For example, if I can't figure out exactly why my code is not working, I can prepare a file with my code 
+      and put it into AI to help me find a solution. Similarly, if I want to figure out how to implement a 
+      certain feature into my game that I don't know how to implement, I can have AI teach me how to do so.
+    </p>
+
+    <h3 style="color:#ccc; margin-top:20px;">Research Background</h3>
+    <p>
+      I have found multiple tutorials on how to make bullet hell bosses as well as basic game design techniques 
+      that I need to refine from semester one.
+    </p>
+
+    <h3 style="color:#ccc; margin-top:30px;">Project Timeline</h3>
+    <p style="font-size:0.9em; color:#777; margin-bottom:15px;">(Click an item to expand details)</p>
+
+    <div class="timeline-container">
+      
+      <div class="timeline-item" onclick="toggleTimeline(this)">
+        <div class="timeline-head">Phase 1: Planning & Setup</div>
+        <div class="timeline-date">Weeks 1-2</div>
+        <div class="timeline-body">
+          <p>
+            • Research existing bullet hell patterns.<br>
+            • Set up project repository and basic engine.<br>
+            • Draft initial boss design documents.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item" onclick="toggleTimeline(this)">
+        <div class="timeline-head">Phase 2: Core Mechanics</div>
+        <div class="timeline-date">Weeks 3-5</div>
+        <div class="timeline-body">
+          <p>
+            • Implement player movement and hitbox logic.<br>
+            • Create first boss sprite and basic firing patterns.<br>
+            • Use AI to debug collision issues.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item" onclick="toggleTimeline(this)">
+        <div class="timeline-head">Phase 3: Polish & Review</div>
+        <div class="timeline-date">Weeks 6-8</div>
+        <div class="timeline-body">
+          <p>
+            • Refine difficulty curve.<br>
+            • Add sound effects and visual feedback.<br>
+            • Final playtesting and code cleanup.
+          </p>
+        </div>
+      </div>
+
+    </div>
+    </div>
+</section>
+
 <section id="experience">
   <div class="card">
     <h2>Experience</h2>
@@ -156,7 +279,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="card">
     <h2>Contact</h2>
@@ -172,6 +294,13 @@
 <footer>
   © 2026 Timothy Dobin — Portfolio
 </footer>
+
+<script>
+  function toggleTimeline(element) {
+    // Add or remove the 'active' class to show/hide content
+    element.classList.toggle('active');
+  }
+</script>
 
 </body>
 </html>
