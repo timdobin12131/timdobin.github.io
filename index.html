@@ -11,6 +11,7 @@
       font-family: Arial, sans-serif;
       background: #0b0b0b;
       color: white;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -35,7 +36,7 @@
     }
 
     section {
-      padding: 80px 24px;
+      padding: 100px 24px;
       max-width: 1200px;
       margin: auto;
     }
@@ -74,66 +75,6 @@
       opacity: 0.85;
     }
 
-    /* Timeline Styling */
-    .timeline-container {
-      margin-top: 20px;
-      border-left: 2px solid #333;
-      padding-left: 20px;
-      margin-left: 10px;
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 25px;
-      cursor: pointer;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -27px;
-      top: 5px;
-      width: 12px;
-      height: 12px;
-      background: #555;
-      border-radius: 50%;
-      transition: background 0.3s, box-shadow 0.3s;
-    }
-
-    .timeline-item:hover::before {
-      background: #7aa2ff;
-    }
-
-    .timeline-item.active::before {
-      background: #7aa2ff;
-      box-shadow: 0 0 10px rgba(122, 162, 255, 0.6);
-    }
-
-    .timeline-head {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #eee;
-    }
-
-    .timeline-date {
-      font-size: 0.85rem;
-      color: #888;
-      margin-bottom: 8px;
-    }
-
-    .timeline-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      color: #ccc;
-      line-height: 1.5;
-    }
-
-    .timeline-item.active .timeline-body {
-      max-height: 500px;
-      margin-top: 5px;
-    }
-
     ul {
       line-height: 1.6;
     }
@@ -149,6 +90,7 @@
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#infernal">Infernal Gauntlet</a>
+    <a href="#development">Development</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -198,93 +140,50 @@
   <div class="card">
     <h2>Project Title — Infernal Gauntlet</h2>
 
-    <h3 style="color:#ccc; margin-top:20px;">Problem Statement</h3>
-    <p>I am trying to make a fun boss fighting game with bullet hell combat.</p>
-
-    <h3 style="color:#ccc; margin-top:20px;">AI Approach</h3>
+    <h3>Problem Statement</h3>
     <p>
-      I use AI as a debugging and learning tool when I encounter standstills in development.
-      It helps me diagnose logic errors, improve structure, and understand how to implement
-      new systems more efficiently.
+      I am developing a boss fighting game centered around fast-paced bullet hell combat.
     </p>
 
-    <h3 style="color:#ccc; margin-top:20px;">Research Background</h3>
+    <h3>AI Approach</h3>
     <p>
-      I have studied multiple tutorials on bullet hell boss design, attack pattern structure,
-      and overall gameplay balancing techniques from earlier coursework.
+      I use AI as a debugging and learning tool when I encounter logic errors
+      or implementation challenges. It helps accelerate development and
+      refine technical understanding.
     </p>
 
-    <!-- NEW SECTION -->
-    <h3 style="color:#ccc; margin-top:30px;">Project Development: Early Stages</h3>
+    <h3>Research Background</h3>
+    <p>
+      I have researched bullet hell boss structure, attack pattern design,
+      and gameplay balance techniques to prepare for development.
+    </p>
+  </div>
+</section>
 
-    <div class="card">
-      <h4>Development Summary</h4>
-      <p>
-        I have begun work on spriting my enemies and programming enemy AI behavior.
-        This includes implementing foundational enemy movement logic and early attack
-        pattern systems. These systems form the groundwork for more advanced boss
-        mechanics and difficulty scaling.
-      </p>
+<!-- NEW SEPARATE PAGE -->
+<section id="development">
+  <div class="card">
+    <h2>Project Development: Early Stages</h2>
 
-      <h4>Challenges Encountered</h4>
-      <p>
-        One of the main challenges was working with previously written code that
-        was slightly unorganized. Some variables and logic structures required
-        refactoring before new features could be implemented effectively.
-      </p>
-
-      <h4>What’s Working vs. What’s Not</h4>
-      <ul>
-        <li><strong>Working:</strong> Basic enemy sprite integration and early AI movement logic.</li>
-        <li><strong>Improving:</strong> Code organization and system scalability for more complex behaviors.</li>
-      </ul>
-    </div>
-
-    <!-- TIMELINE -->
-    <h3 style="color:#ccc; margin-top:30px;">Project Timeline</h3>
-    <p style="font-size:0.9em; color:#777; margin-bottom:15px;">
-      (Click an item to expand details)
+    <h3>Development Summary</h3>
+    <p>
+      I have begun work on spriting my enemies and programming enemy AI behavior.
+      This includes implementing foundational movement logic and early attack
+      patterns that will scale into more complex boss mechanics.
     </p>
 
-    <div class="timeline-container">
+    <h3>Challenges Encountered</h3>
+    <p>
+      A major challenge was working with previously written code that was
+      slightly unorganized. Some systems required restructuring before
+      new features could be implemented cleanly.
+    </p>
 
-      <div class="timeline-item" onclick="toggleTimeline(this)">
-        <div class="timeline-head">Phase 1: Planning & Setup</div>
-        <div class="timeline-date">Weeks 1–2</div>
-        <div class="timeline-body">
-          <p>
-            • Research bullet hell mechanics<br>
-            • Establish base project structure<br>
-            • Design initial boss concept
-          </p>
-        </div>
-      </div>
-
-      <div class="timeline-item" onclick="toggleTimeline(this)">
-        <div class="timeline-head">Phase 2: Core Mechanics</div>
-        <div class="timeline-date">Weeks 3–5</div>
-        <div class="timeline-body">
-          <p>
-            • Implement player systems<br>
-            • Create early enemy AI logic<br>
-            • Integrate sprite animations
-          </p>
-        </div>
-      </div>
-
-      <div class="timeline-item" onclick="toggleTimeline(this)">
-        <div class="timeline-head">Phase 3: Polish & Review</div>
-        <div class="timeline-date">Weeks 6–8</div>
-        <div class="timeline-body">
-          <p>
-            • Difficulty refinement<br>
-            • Visual polish & feedback systems<br>
-            • Code cleanup & optimization
-          </p>
-        </div>
-      </div>
-
-    </div>
+    <h3>What’s Working vs. What’s Not</h3>
+    <ul>
+      <li><strong>Working:</strong> Enemy sprites integrated and basic AI movement functioning.</li>
+      <li><strong>Improving:</strong> Code organization and scalability for advanced behaviors.</li>
+    </ul>
   </div>
 </section>
 
@@ -295,7 +194,7 @@
     <p><em>October 2024 – Present</em></p>
     <ul>
       <li>Volunteered for high-traffic shifts</li>
-      <li>Top seller in Chicago Market Snack Pack competition</li>
+      <li>Top seller in Chicago Market competition</li>
       <li>Generated over $2,000 in sales</li>
     </ul>
   </div>
@@ -307,7 +206,7 @@
       <li>GPA: 4.42</li>
       <li>AP Scholar with Distinction</li>
       <li>Computer Science Club</li>
-      <li>VHHS Jazz Band (Drummer, 3 years)</li>
+      <li>Jazz Band (Drummer, 3 years)</li>
     </ul>
   </div>
 </section>
@@ -327,12 +226,6 @@
 <footer>
   © 2026 Timothy Dobin — Portfolio
 </footer>
-
-<script>
-  function toggleTimeline(element) {
-    element.classList.toggle('active');
-  }
-</script>
 
 </body>
 </html>
