@@ -30,6 +30,10 @@
       font-size: 15px;
     }
 
+    nav a:hover {
+      color: #7aa2ff;
+    }
+
     section {
       padding: 80px 24px;
       max-width: 1200px;
@@ -70,7 +74,7 @@
       opacity: 0.85;
     }
 
-    /* --- NEW CSS FOR TIMELINE --- */
+    /* Timeline Styling */
     .timeline-container {
       margin-top: 20px;
       border-left: 2px solid #333;
@@ -84,11 +88,10 @@
       cursor: pointer;
     }
 
-    /* The Dot on the timeline */
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -27px; /* Aligns with border-left */
+      left: -27px;
       top: 5px;
       width: 12px;
       height: 12px;
@@ -118,7 +121,6 @@
       margin-bottom: 8px;
     }
 
-    /* Hidden content area */
     .timeline-body {
       max-height: 0;
       overflow: hidden;
@@ -127,10 +129,13 @@
       line-height: 1.5;
     }
 
-    /* Expanded content area */
     .timeline-item.active .timeline-body {
-      max-height: 500px; /* Arbitrary large height */
+      max-height: 500px;
       margin-top: 5px;
+    }
+
+    ul {
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -143,7 +148,8 @@
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
-    <a href="#infernal">Infernal Gauntlet</a> <a href="#experience">Experience</a>
+    <a href="#infernal">Infernal Gauntlet</a>
+    <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -184,7 +190,6 @@
       A fast-paced bullet-hell action RPG showcasing custom combat logic,
       player movement systems, and boss AI.
     </p>
-
     <iframe src="hells-dungeon.html"></iframe>
   </div>
 </section>
@@ -192,67 +197,95 @@
 <section id="infernal">
   <div class="card">
     <h2>Project Title — Infernal Gauntlet</h2>
-    
+
     <h3 style="color:#ccc; margin-top:20px;">Problem Statement</h3>
     <p>I am trying to make a fun boss fighting game with bullet hell combat.</p>
 
     <h3 style="color:#ccc; margin-top:20px;">AI Approach</h3>
     <p>
-      I want to integrate AI into my project by utilizing it when I face bugs or standstills in my code. 
-      For example, if I can't figure out exactly why my code is not working, I can prepare a file with my code 
-      and put it into AI to help me find a solution. Similarly, if I want to figure out how to implement a 
-      certain feature into my game that I don't know how to implement, I can have AI teach me how to do so.
+      I use AI as a debugging and learning tool when I encounter standstills in development.
+      It helps me diagnose logic errors, improve structure, and understand how to implement
+      new systems more efficiently.
     </p>
 
     <h3 style="color:#ccc; margin-top:20px;">Research Background</h3>
     <p>
-      I have found multiple tutorials on how to make bullet hell bosses as well as basic game design techniques 
-      that I need to refine from semester one.
+      I have studied multiple tutorials on bullet hell boss design, attack pattern structure,
+      and overall gameplay balancing techniques from earlier coursework.
     </p>
 
+    <!-- NEW SECTION -->
+    <h3 style="color:#ccc; margin-top:30px;">Project Development: Early Stages</h3>
+
+    <div class="card">
+      <h4>Development Summary</h4>
+      <p>
+        I have begun work on spriting my enemies and programming enemy AI behavior.
+        This includes implementing foundational enemy movement logic and early attack
+        pattern systems. These systems form the groundwork for more advanced boss
+        mechanics and difficulty scaling.
+      </p>
+
+      <h4>Challenges Encountered</h4>
+      <p>
+        One of the main challenges was working with previously written code that
+        was slightly unorganized. Some variables and logic structures required
+        refactoring before new features could be implemented effectively.
+      </p>
+
+      <h4>What’s Working vs. What’s Not</h4>
+      <ul>
+        <li><strong>Working:</strong> Basic enemy sprite integration and early AI movement logic.</li>
+        <li><strong>Improving:</strong> Code organization and system scalability for more complex behaviors.</li>
+      </ul>
+    </div>
+
+    <!-- TIMELINE -->
     <h3 style="color:#ccc; margin-top:30px;">Project Timeline</h3>
-    <p style="font-size:0.9em; color:#777; margin-bottom:15px;">(Click an item to expand details)</p>
+    <p style="font-size:0.9em; color:#777; margin-bottom:15px;">
+      (Click an item to expand details)
+    </p>
 
     <div class="timeline-container">
-      
+
       <div class="timeline-item" onclick="toggleTimeline(this)">
         <div class="timeline-head">Phase 1: Planning & Setup</div>
-        <div class="timeline-date">Weeks 1-2</div>
+        <div class="timeline-date">Weeks 1–2</div>
         <div class="timeline-body">
           <p>
-            • Research existing bullet hell patterns.<br>
-            • Set up project repository and basic engine.<br>
-            • Draft initial boss design documents.
+            • Research bullet hell mechanics<br>
+            • Establish base project structure<br>
+            • Design initial boss concept
           </p>
         </div>
       </div>
 
       <div class="timeline-item" onclick="toggleTimeline(this)">
         <div class="timeline-head">Phase 2: Core Mechanics</div>
-        <div class="timeline-date">Weeks 3-5</div>
+        <div class="timeline-date">Weeks 3–5</div>
         <div class="timeline-body">
           <p>
-            • Implement player movement and hitbox logic.<br>
-            • Create first boss sprite and basic firing patterns.<br>
-            • Use AI to debug collision issues.
+            • Implement player systems<br>
+            • Create early enemy AI logic<br>
+            • Integrate sprite animations
           </p>
         </div>
       </div>
 
       <div class="timeline-item" onclick="toggleTimeline(this)">
         <div class="timeline-head">Phase 3: Polish & Review</div>
-        <div class="timeline-date">Weeks 6-8</div>
+        <div class="timeline-date">Weeks 6–8</div>
         <div class="timeline-body">
           <p>
-            • Refine difficulty curve.<br>
-            • Add sound effects and visual feedback.<br>
-            • Final playtesting and code cleanup.
+            • Difficulty refinement<br>
+            • Visual polish & feedback systems<br>
+            • Code cleanup & optimization
           </p>
         </div>
       </div>
 
     </div>
-    </div>
+  </div>
 </section>
 
 <section id="experience">
@@ -261,7 +294,7 @@
     <h3>Crew Member — AMC Theatres</h3>
     <p><em>October 2024 – Present</em></p>
     <ul>
-      <li>Volunteered for high-traffic shifts to improve team efficiency</li>
+      <li>Volunteered for high-traffic shifts</li>
       <li>Top seller in Chicago Market Snack Pack competition</li>
       <li>Generated over $2,000 in sales</li>
     </ul>
@@ -297,7 +330,6 @@
 
 <script>
   function toggleTimeline(element) {
-    // Add or remove the 'active' class to show/hide content
     element.classList.toggle('active');
   }
 </script>
